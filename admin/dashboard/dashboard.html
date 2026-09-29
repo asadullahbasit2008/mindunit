@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FandomVerse - Ultimate Pop Culture & Fandom Portal</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f5f0ff',
+              100: '#ece0ff',
+              400: '#b275ff',
+              500: '#a970ff',
+              600: '#8b45e8',
+              700: '#6c23c2',
+              900: '#1b0933',
+            },
+            darkbg: '#08060d',
+            darkcard: '#130d21',
+            darkborder: 'rgba(169, 112, 255, 0.2)',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            brand: ['Rajdhani', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom CSS animations and smooth styling */
+    body {
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .font-brand {
+      font-family: 'Rajdhani', sans-serif;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(8, 6, 13, 0.8);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(169, 112, 255, 0.4);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a970ff;
+    }
+    .glass-panel {
+      background: rgba(19, 13, 33, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(169, 112, 255, 0.2);
+    }
+    .light .glass-panel {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(139, 69, 232, 0.2);
+    }
+    .glow-effect {
+      box-shadow: 0 0 20px rgba(169, 112, 255, 0.25);
+    }
+    .glow-effect:hover {
+      box-shadow: 0 0 30px rgba(169, 112, 255, 0.45);
+    }
+  </style>
+</head>
+<body class="bg-darkbg text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-40 w-full glass-panel border-b transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="switchSection('home')">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+            <img src="./img/WhatsApp Image 2026-09-24 at 5.58.24 PM.jpeg" alt="FandomVerse Logo" class="navbar-logo">
+        </div>
+        <span class=" text-2xl tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-purple-300 to-pink-500">
+          FANDOM<span class="text-white dark:text-white">VERSE</span>
+        </span>
+      </div>
+
+      <!-- Quick Global Search Bar -->
+      <div class="hidden md:flex items-center flex-1 max-w-md relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 text-gray-400"></i>
+        <input 
+          type="text" 
+          id="global-search-input" 
+          placeholder="Search Marvel, JJK, Star Wars, BTS, Elden Ring..." 
+          oninput="handleGlobalSearch(this.value)"
+          class="w-full bg-black/20 dark:bg-black/40 border border-brand-500/30 rounded-xl pl-10 pr-4 py-2 text-sm text-gray-200 placeholder-gray-400 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
+        />
+      </div>
+
+      <!-- Top Right Controls -->
+      <div class="flex items-center gap-3">
+        <!-- Bookmark Vault Button -->
+        <button onclick="openVaultModal()" class="relative p-2.5 rounded-xl bg-brand-500/10 border border-brand-500/30 text-brand-400 hover:bg-brand-500/20 transition-all" title="Saved Vault">
+          <i class="fa-solid fa-bookmark"></i>
+          <span id="vault-badge" class="absolute -top-1.5 -right-1.5 bg-pink-500 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-md">0</span>
+        </button>
+
+        <!-- Dark/Light Theme Toggle -->
+        <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-brand-500/10 border border-brand-500/30 text-brand-400 hover:bg-brand-500/20 transition-all" title="Toggle Theme">
+          <i class="fa-solid fa-moon text-lg" id="theme-icon"></i>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-brand-500/10 border border-brand-500/30 text-brand-400 hover:bg-brand-500/20 transition-all">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden md:hidden flex-col justify-between p-6 transition-all duration-300">
+    <div>
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-400 flex items-center justify-center text-white">
+            <i class="fa-solid fa-meteor text-xl"></i>
+          </div>
+          <span class="font-brand text-2xl font-bold tracking-wider text-white">FANDOMVERSE</span>
+        </div>
+        <button onclick="toggleMobileMenu()" class="p-2 text-gray-400 hover:text-white">
+          <i class="fa-solid fa-xmark text-2xl"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Nav Links -->
+      <div class="flex flex-col gap-2">
+        <button onclick="navClick('home')" class="mobile-nav-btn text-left px-4 py-3 rounded-xl font-medium text-gray-200 hover:bg-brand-500/20 flex items-center gap-3"><i class="fa-solid fa-house w-6 text-brand-400"></i> Home</button>
+        <button onclick="navClick('discover')" class="mobile-nav-btn text-left px-4 py-3 rounded-xl font-medium text-gray-200 hover:bg-brand-500/20 flex items-center gap-3"><i class="fa-solid fa-compass w-6 text-brand-400"></i> Discover Fandoms</button>
+        <button onclick="navClick('news')" class="mobile-nav-btn text-left px-4 py-3 rounded-xl font-medium text-gray-200 hover:bg-brand-500/20 flex items-center gap-3"><i class="fa-solid fa-newspaper w-6 text-brand-400"></i> Trending News</button>
+        <button onclick="navClick('quiz')" class="mobile-nav-btn text-left px-4 py-3 rounded-xl font-medium text-gray-200 hover:bg-brand-500/20 flex items-center gap-3"><i class="fa-solid fa-brain w-6 text-brand-400"></i> Trivia Quiz</button>
+        <button onclick="navClick('fanart')" class="mobile-nav-btn text-left px-4 py-3 rounded-xl font-medium text-gray-200 hover:bg-brand-500/20 flex items-center gap-3"><i class="fa-solid fa-palette w-6 text-brand-400"></i> Fan Art Gallery</button>
+        <button onclick="navClick('community')" class="mobile-nav-btn text-left px-4 py-3 rounded-xl font-medium text-gray-200 hover:bg-brand-500/20 flex items-center gap-3"><i class="fa-solid fa-comments w-6 text-brand-400"></i> Community Feed</button>
+        <button onclick="navClick('leaderboard')" class="mobile-nav-btn text-left px-4 py-3 rounded-xl font-medium text-gray-200 hover:bg-brand-500/20 flex items-center gap-3"><i class="fa-solid fa-trophy w-6 text-brand-400"></i> Leaderboard</button>
+      </div>
+    </div>
+
+    <div class="border-t border-brand-500/20 pt-4 text-center text-xs text-gray-400">
+      FandomVerse Multi-Universe Portal v3.0
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full flex flex-col md:flex-row gap-8">
+    
+    <!-- DESKTOP SIDEBAR NAVIGATION -->
+    <aside class="hidden md:block w-64 flex-shrink-0">
+      <div class="sticky top-24 glass-panel rounded-2xl p-4 flex flex-col gap-1 shadow-xl">
+        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider px-3 py-2">Navigation</div>
+        
+        <button id="nav-btn-home" onclick="switchSection('home')" class="nav-tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+          <i class="fa-solid fa-house w-5"></i> Home
+        </button>
+        <button id="nav-btn-discover" onclick="switchSection('discover')" class="nav-tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+          <i class="fa-solid fa-compass w-5"></i> Discover Fandoms
+        </button>
+        <button id="nav-btn-news" onclick="switchSection('news')" class="nav-tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+          <i class="fa-solid fa-newspaper w-5"></i> Trending News
+        </button>
+        <button id="nav-btn-quiz" onclick="switchSection('quiz')" class="nav-tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+          <i class="fa-solid fa-brain w-5"></i> Trivia Quiz
+        </button>
+        <button id="nav-btn-fanart" onclick="switchSection('fanart')" class="nav-tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+          <i class="fa-solid fa-palette w-5"></i> Fan Art Gallery
+        </button>
+        <button id="nav-btn-community" onclick="switchSection('community')" class="nav-tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+          <i class="fa-solid fa-comments w-5"></i> Community Feed
+        </button>
+        <button id="nav-btn-leaderboard" onclick="switchSection('leaderboard')" class="nav-tab-btn flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all">
+          <i class="fa-solid fa-trophy w-5"></i> Leaderboard
+        </button>
+
+        <hr class="my-3 border-brand-500/20" />
+
+        <!-- User Quick Card -->
+        <div class="bg-black/30 dark:bg-black/50 p-3 rounded-xl border border-brand-500/20">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center font-bold text-xs text-white">
+              YOU
+            </div>
+            <div class="overflow-hidden">
+              <p id="user-display-name" class="text-xs font-bold text-gray-200 truncate">Fandom Master</p>
+              <p class="text-[10px] text-brand-400 font-mono" id="user-points-display">Score: 0 pts</p>
+            </div>
+          </div>
+          <button onclick="switchSection('quiz')" class="w-full text-center text-[11px] py-1 bg-brand-500/20 hover:bg-brand-500/30 text-brand-300 rounded-lg font-semibold transition-all">
+            Earn Points in Quiz
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT SECTIONS WRAPPER -->
+    <main class="flex-1 w-full min-w-0">
+      
+      <!-- SECTION 1: HOME OVERVIEW -->
+      <section id="sec-home" class="content-section flex flex-col gap-6">
+        
+        <!-- Hero Banner Card -->
+        <div class="relative overflow-hidden rounded-3xl glass-panel p-6 sm:p-10 border border-brand-500/30 glow-effect">
+          <div class="absolute -right-12 -bottom-12 w-80 h-80 bg-gradient-to-tr from-brand-600/30 to-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <div class="relative z-10 max-w-2xl">
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-brand-500/20 border border-brand-500/40 text-brand-300 mb-4">
+              <i class="fa-solid fa-fire mr-1"></i> MULTIVERSE HQ 2026
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-extrabold font-brand tracking-wide text-white leading-tight mb-4">
+              EXPLORE YOUR FAVORITE <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-pink-400">FANDOMS</span>
+            </h1>
+            <p class="text-sm sm:text-base text-gray-300 mb-6 leading-relaxed">
+              Connect with fellow fans, get the latest leaks on Marvel, Attack on Titan, Star Wars, Harry Potter & Elden Ring, solve interactive trivia, and share fan art!
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <button onclick="switchSection('discover')" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 text-white font-semibold text-sm shadow-lg shadow-brand-500/30 hover:scale-105 transition-all">
+                Explore Fandoms <i class="fa-solid fa-arrow-right ml-2"></i>
+              </button>
+              <button onclick="switchSection('quiz')" class="px-6 py-3 rounded-xl bg-white/10 border border-white/20 text-white font-semibold text-sm hover:bg-white/20 transition-all">
+                Play Quiz
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="glass-panel p-4 rounded-2xl flex items-center gap-4 border border-brand-500/20">
+            <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 font-semibold">Indexed Titles</p>
+              <p class="text-xl font-bold font-brand text-white" id="stat-total-fandoms">12+</p>
+            </div>
+          </div>
+
+          <div class="glass-panel p-4 rounded-2xl flex items-center gap-4 border border-brand-500/20">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-comments"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 font-semibold">Community Posts</p>
+              <p class="text-xl font-bold font-brand text-white" id="stat-total-posts">0</p>
+            </div>
+          </div>
+
+          <div class="glass-panel p-4 rounded-2xl flex items-center gap-4 border border-brand-500/20">
+            <div class="w-12 h-12 rounded-xl bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 font-semibold">Quiz Questions</p>
+              <p class="text-xl font-bold font-brand text-white">5 Active</p>
+            </div>
+          </div>
+
+          <div class="glass-panel p-4 rounded-2xl flex items-center gap-4 border border-brand-500/20">
+            <div class="w-12 h-12 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-bookmark"></i>
+            </div>
+            <div>
+              <p class="text-xs text-gray-400 font-semibold">Your Vault Items</p>
+              <p class="text-xl font-bold font-brand text-white" id="stat-vault-count">0</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Highlights Grid -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold font-brand tracking-wide text-white flex items-center gap-2">
+              <i class="fa-solid fa-star text-yellow-400"></i> FEATURED FANDOMS
+            </h2>
+            <button onclick="switchSection('discover')" class="text-xs text-brand-400 hover:text-brand-300 font-semibold">View All &rarr;</button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="home-featured-grid">
+            <!-- Dynamically Rendered via JS -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- SECTION 2: DISCOVER FANDOMS -->
+      <section id="sec-discover" class="content-section flex flex-col gap-6 hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h1 class="text-2xl font-bold font-brand text-white tracking-wide">DISCOVER MULTI-UNIVERSE FANDOMS</h1>
+            <p class="text-xs text-gray-400">Explore real detailed lore, episode info, and creators.</p>
+          </div>
+          
+          <!-- Category Pills -->
+          <div class="flex flex-wrap gap-2" id="category-pills">
+            <button onclick="filterCategory('All')" class="cat-pill active-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-brand-600 text-white transition-all">All</button>
+            <button onclick="filterCategory('Anime')" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-black/40 text-gray-300 border border-brand-500/20 hover:border-brand-500/50 transition-all">Anime</button>
+            <button onclick="filterCategory('Movies')" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-black/40 text-gray-300 border border-brand-500/20 hover:border-brand-500/50 transition-all">Movies</button>
+            <button onclick="filterCategory('Gaming')" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-black/40 text-gray-300 border border-brand-500/20 hover:border-brand-500/50 transition-all">Gaming</button>
+            <button onclick="filterCategory('TV Shows')" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-black/40 text-gray-300 border border-brand-500/20 hover:border-brand-500/50 transition-all">TV Shows</button>
+            <button onclick="filterCategory('Music')" class="cat-pill px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-black/40 text-gray-300 border border-brand-500/20 hover:border-brand-500/50 transition-all">Music</button>
+          </div>
+        </div>
+
+        <!-- Filter & Search Bar within section -->
+        <div class="relative">
+          <i class="fa-solid fa-search absolute left-4 top-3.5 text-gray-400"></i>
+          <input 
+            type="text" 
+            id="discover-search-input" 
+            placeholder="Search titles, tags, creators, studios..." 
+            oninput="renderDiscoverCards()"
+            class="w-full bg-black/30 dark:bg-black/50 border border-brand-500/30 rounded-2xl pl-11 pr-4 py-3 text-sm text-gray-100 placeholder-gray-400 focus:outline-none focus:border-brand-500"
+          />
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="discover-cards-grid">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- SECTION 3: TRENDING NEWS -->
+      <section id="sec-news" class="content-section flex flex-col gap-6 hidden">
+        <div>
+          <h1 class="text-2xl font-bold font-brand text-white tracking-wide">TRENDING FANDOM NEWS & LEAKS</h1>
+          <p class="text-xs text-gray-400">Stay up to date with confirmed announcements, trailers, and fan theories.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="news-grid">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- SECTION 4: TRIVIA QUIZ MODULE -->
+      <section id="sec-quiz" class="content-section flex flex-col gap-6 hidden">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-brand-500/30 glow-effect max-w-2xl mx-auto w-full">
+          
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-yellow-500/20 text-yellow-400 border border-yellow-500/40">
+              <i class="fa-solid fa-trophy mr-1"></i> FANDOM TRIVIA CHALLENGE
+            </span>
+            <span class="text-xs font-mono text-brand-400" id="quiz-progress-text">Question 1 of 5</span>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="w-full bg-black/40 h-2 rounded-full overflow-hidden mb-6 border border-brand-500/20">
+            <div id="quiz-progress-bar" class="bg-gradient-to-r from-brand-500 to-pink-500 h-full w-1/5 transition-all duration-300"></div>
+          </div>
+
+          <!-- Question Box -->
+          <div id="quiz-active-box">
+            <h2 class="text-lg sm:text-xl font-bold text-white mb-4" id="quiz-question-title">
+              Loading question...
+            </h2>
+
+            <!-- Options Container -->
+            <div class="flex flex-col gap-3 mb-6" id="quiz-options-container">
+              <!-- Rendered via JS -->
+            </div>
+
+            <!-- Feedback Alert -->
+            <div id="quiz-feedback" class="hidden p-4 rounded-xl text-xs sm:text-sm font-medium mb-4"></div>
+
+            <div class="flex justify-end">
+              <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="hidden px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 text-white font-semibold text-sm shadow-lg hover:scale-105 transition-all">
+                Next Question <i class="fa-solid fa-arrow-right ml-1"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Completed Box (hidden by default) -->
+          <div id="quiz-result-box" class="hidden text-center py-6">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-yellow-400 to-pink-500 mx-auto flex items-center justify-center text-3xl text-black font-extrabold mb-4 shadow-xl">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <h2 class="text-2xl font-bold font-brand text-white mb-2">QUIZ COMPLETED!</h2>
+            <p class="text-sm text-gray-300 mb-4" id="quiz-score-summary">You scored 0 / 50 points.</p>
+            
+            <p class="text-xs text-brand-300 bg-brand-500/10 border border-brand-500/30 p-3 rounded-xl mb-6">
+              Your score has been updated on the global Leaderboard!
+            </p>
+
+            <button onclick="resetQuiz()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 text-white font-semibold text-sm shadow-lg hover:scale-105 transition-all">
+              <i class="fa-solid fa-rotate-right mr-2"></i> Retake Trivia Quiz
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 5: FAN ART GALLERY -->
+      <section id="sec-fanart" class="content-section flex flex-col gap-6 hidden">
+        <div>
+          <h1 class="text-2xl font-bold font-brand text-white tracking-wide">FAN ART GALLERY</h1>
+          <p class="text-xs text-gray-400">Community creations, digital paintings, and stylized character portraits.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="fanart-grid">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- SECTION 6: COMMUNITY FEED -->
+      <section id="sec-community" class="content-section flex flex-col gap-6 hidden">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl font-bold font-brand text-white tracking-wide">COMMUNITY FEED</h1>
+            <p class="text-xs text-gray-400">Share hot takes, ask questions, and engage with fans.</p>
+          </div>
+          <button onclick="openNewPostModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 text-white text-xs font-semibold shadow-lg hover:scale-105 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-plus"></i> Create Post
+          </button>
+        </div>
+
+        <!-- Post List -->
+        <div class="flex flex-col gap-6" id="posts-container">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- SECTION 7: LEADERBOARD -->
+      <section id="sec-leaderboard" class="content-section flex flex-col gap-6 hidden">
+        <div>
+          <h1 class="text-2xl font-bold font-brand text-white tracking-wide">FANDOM LEADERBOARD</h1>
+          <p class="text-xs text-gray-400">Top active fans based on trivia accuracy and community contributions.</p>
+        </div>
+
+        <div class="glass-panel rounded-2xl overflow-hidden border border-brand-500/20">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-gray-200">
+              <thead class="bg-black/40 text-xs font-semibold text-gray-400 uppercase border-b border-brand-500/20">
+                <tr>
+                  <th class="px-6 py-4">Rank</th>
+                  <th class="px-6 py-4">Fan</th>
+                  <th class="px-6 py-4">Title</th>
+                  <th class="px-6 py-4 text-right">Points</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-brand-500/10" id="leaderboard-table-body">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL 1: ITEM DETAIL MODAL -->
+  <div id="modal-detail" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="glass-panel rounded-3xl max-w-xl w-full p-6 border border-brand-500/30 overflow-hidden relative max-h-[90vh] flex flex-col">
+      <button onclick="closeModal('modal-detail')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/50 text-gray-300 hover:text-white flex items-center justify-center">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="overflow-y-auto pr-1 flex flex-col gap-4" id="modal-detail-content">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: LIGHTBOX FAN ART MODAL -->
+  <div id="modal-lightbox" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="relative max-w-4xl w-full flex flex-col items-center">
+      <button onclick="closeModal('modal-lightbox')" class="absolute -top-12 right-0 text-white text-2xl p-2 hover:text-pink-400">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img id="lightbox-img" src="" class="max-h-[75vh] w-auto rounded-2xl border border-brand-500/40 object-contain mb-4" />
+      <div class="text-center">
+        <h3 id="lightbox-title" class="text-xl font-bold font-brand text-white"></h3>
+        <p id="lightbox-artist" class="text-xs text-brand-400"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: SAVED VAULT DRAWER -->
+  <div id="modal-vault" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="glass-panel rounded-3xl max-w-md w-full p-6 border border-brand-500/30 relative flex flex-col max-h-[80vh]">
+      <div class="flex items-center justify-between mb-4 border-b border-brand-500/20 pb-3">
+        <h3 class="text-lg font-bold font-brand text-white flex items-center gap-2">
+          <i class="fa-solid fa-bookmark text-pink-500"></i> SAVED FANDOM VAULT
+        </h3>
+        <button onclick="closeModal('modal-vault')" class="text-gray-400 hover:text-white">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="overflow-y-auto flex-1 flex flex-col gap-3" id="vault-items-container">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 4: CREATE POST MODAL -->
+  <div id="modal-new-post" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="glass-panel rounded-3xl max-w-lg w-full p-6 border border-brand-500/30 relative">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold font-brand text-white">CREATE COMMUNITY POST</h3>
+        <button onclick="closeModal('modal-new-post')" class="text-gray-400 hover:text-white">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleCreatePost(event)" class="flex flex-col gap-4">
+        <div>
+          <label class="text-xs font-semibold text-gray-300 mb-1 block">Title</label>
+          <input type="text" id="post-input-title" required placeholder="e.g. Secret Wars theory about Doctor Doom..." class="w-full bg-black/40 border border-brand-500/30 rounded-xl px-3.5 py-2 text-sm text-gray-100 focus:outline-none focus:border-brand-500" />
+        </div>
+
+        <div>
+          <label class="text-xs font-semibold text-gray-300 mb-1 block">Fandom Tag</label>
+          <select id="post-input-tag" class="w-full bg-black/40 border border-brand-500/30 rounded-xl px-3.5 py-2 text-sm text-gray-100 focus:outline-none focus:border-brand-500">
+            <option value="Marvel MCU">Marvel MCU</option>
+            <option value="Anime">Anime / Manga</option>
+            <option value="Gaming">Gaming</option>
+            <option value="Star Wars">Star Wars</option>
+            <option value="Harry Potter">Harry Potter</option>
+            <option value="Stranger Things">Stranger Things</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="text-xs font-semibold text-gray-300 mb-1 block">Content</label>
+          <textarea id="post-input-content" rows="4" required placeholder="Write your thoughts..." class="w-full bg-black/40 border border-brand-500/30 rounded-xl px-3.5 py-2 text-sm text-gray-100 focus:outline-none focus:border-brand-500"></textarea>
+        </div>
+
+        <div class="flex justify-end gap-3 mt-2">
+          <button type="button" onclick="closeModal('modal-new-post')" class="px-4 py-2 rounded-xl bg-white/10 text-xs font-semibold text-gray-300">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 text-xs font-semibold text-white shadow-lg">Publish Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================================
+       DATA SEEDS: REAL FANDOM DATA
+       ========================================================================== */
+    const SEED_FANDOMS = [
+      {
+        id: 'f1',
+        title: 'Jujutsu Kaisen',
+        category: 'Anime',
+        creator: 'Gege Akutami / MAPPA',
+        rating: 9.4,
+        episodes: '47 Episodes / 1 Movie',
+        image: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80',
+        description: 'Yuji Itadori enters the world of Cursed Spirits after swallowing a dangerous cursed artifact containing Sukuna\'s finger.',
+        featured: true
+      },
+      {
+        id: 'f2',
+        title: 'Marvel MCU: Secret Wars',
+        category: 'Movies',
+        creator: 'Marvel Studios',
+        rating: 9.6,
+        episodes: '34 Films Multi-Phase',
+        image: 'https://images.unsplash.com/photo-1635805737707-575885ab0820?w=600&auto=format&fit=crop&q=80',
+        description: 'The culmination of the Multiverse Saga bringing together heroes across alternate dimensions to save reality.',
+        featured: true
+      },
+      {
+        id: 'f3',
+        title: 'Elden Ring: Shadow of Erdtree',
+        category: 'Gaming',
+        creator: 'FromSoftware / Hidetaka Miyazaki',
+        rating: 9.8,
+        episodes: '100+ Hours RPG',
+        image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=80',
+        description: 'Guided by Empyrean Miquella, Tarnished warriors travel to the Land of Shadow to uncover ancient Elden secrets.',
+        featured: true
+      },
+      {
+        id: 'f4',
+        title: 'Attack on Titan',
+        category: 'Anime',
+        creator: 'Hajime Isayama / Wit & MAPPA',
+        rating: 9.5,
+        episodes: '89 Episodes',
+        image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80',
+        description: 'Eren Yeager vows to cleanse the earth of giant human-eating Titans after witnessing his hometown destroyed.',
+        featured: false
+      },
+      {
+        id: 'f5',
+        title: 'Star Wars: The Mandalorian',
+        category: 'TV Shows',
+        creator: 'Jon Favreau / Lucasfilm',
+        rating: 9.1,
+        episodes: '24 Episodes',
+        image: 'https://images.unsplash.com/photo-1579566346927-c68383817a25?w=600&auto=format&fit=crop&q=80',
+        description: 'A lone Mandalorian bounty hunter travels the outer reaches of the galaxy with Grogu (Baby Yoda).',
+        featured: false
+      },
+      {
+        id: 'f6',
+        title: 'Harry Potter & Hogwarts Lore',
+        category: 'Movies',
+        creator: 'J.K. Rowling / Warner Bros.',
+        rating: 9.2,
+        episodes: '8 Movies + Legacy Games',
+        image: 'https://images.unsplash.com/photo-1551269901-5c5e14c25df7?w=600&auto=format&fit=crop&q=80',
+        description: 'The magical journey of a young wizard battling the dark forces of Voldemort at Hogwarts Castle.',
+        featured: false
+      },
+      {
+        id: 'f7',
+        title: 'Stranger Things Season 5',
+        category: 'TV Shows',
+        creator: 'Duffer Brothers / Netflix',
+        rating: 9.3,
+        episodes: '34 Episodes',
+        image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80',
+        description: 'The final battle against Vecna and the Upside Down threatens Hawkins, Indiana.',
+        featured: false
+      },
+      {
+        id: 'f8',
+        title: 'BTS & K-Pop Universe',
+        category: 'Music',
+        creator: 'HYBE / BigHit',
+        rating: 9.7,
+        episodes: 'Global Discography',
+        image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80',
+        description: 'Global musical phenomenon connecting millions of ARMY fans through storytelling and music videos.',
+        featured: false
+      }
+    ];
+
+    const SEED_NEWS = [
+      {
+        id: 'n1',
+        title: 'Jujutsu Kaisen Season 3 Formally Confirmed for Culling Game Arc',
+        category: 'Anime',
+        date: '2 Hours Ago',
+        upvotes: 420,
+        upvoted: false,
+        image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
+        content: 'MAPPA studio officially announced production on the Culling Game Arc, featuring high stakes sorcerer battles.'
+      },
+      {
+        id: 'n2',
+        title: 'Elden Ring DLC Breaks Simultaneous Player Records Worldwide',
+        category: 'Gaming',
+        date: '5 Hours Ago',
+        upvotes: 890,
+        upvoted: false,
+        image: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=80',
+        content: 'FromSoftware\'s latest expansion surpassed 780,000 active Steam players within its first 24 hours.'
+      },
+      {
+        id: 'n3',
+        title: 'Marvel Studios Teases Robert Downey Jr. return as Doctor Doom',
+        category: 'Movies',
+        date: '1 Day Ago',
+        upvotes: 1250,
+        upvoted: false,
+        image: 'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?w=600&auto=format&fit=crop&q=80',
+        content: 'Comic-Con reveal confirms Avengers: Doomsday will feature Victor Von Doom in the spotlight.'
+      }
+    ];
+
+    const SEED_QUIZ = [
+      {
+        question: "In 'Jujutsu Kaisen', what is Gojo Satoru's famous domain expansion name?",
+        options: ["Unlimited Void", "Malevolent Shrine", "Chimera Shadow Garden", "Coffin of the Iron Mountain"],
+        answer: 0,
+        explanation: "Gojo's Domain Expansion is called Unlimited Void (Muryōkūsho), rendering enemies paralyzed with endless information."
+      },
+      {
+        question: "Which metal is Captain America's shield crafted from in Marvel MCU?",
+        options: ["Adamantium", "Vibranium", "Uru Metal", "Titanium Alloy"],
+        answer: 1,
+        explanation: "Captain America's iconic shield is composed of pure Wakandan Vibranium, capable of absorbing vibrations."
+      },
+      {
+        question: "Who created the Land of Shadow in 'Elden Ring' lore?",
+        options: ["Radahn", "Marika the Eternal", "Ranni the Witch", "Godfrey"],
+        answer: 1,
+        explanation: "Queen Marika veiled the Land of Shadow to conceal the Erdtree's dark origin and Messmer's crusade."
+      },
+      {
+        question: "What is the name of Eren Yeager's hometown in Attack on Titan?",
+        options: ["Trost District", "Shiganshina District", "Stohess District", "Marley"],
+        answer: 1,
+        explanation: "The Titans broke through Wall Maria at Shiganshina District in the very first episode."
+      },
+      {
+        question: "In Harry Potter, which spell is used to summon objects?",
+        options: ["Alohomora", "Expelliarmus", "Accio", "Lumos"],
+        answer: 2,
+        explanation: "'Accio' is the summoning charm used by witches and wizards to pull objects toward them."
+      }
+    ];
+
+    const SEED_FANART = [
+      {
+        id: 'fa1',
+        title: 'Domain Expansion Visualized',
+        artist: '@SukunaArt_X',
+        likes: 310,
+        liked: false,
+        image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=600&auto=format&fit=crop&q=80'
+      },
+      {
+        id: 'fa2',
+        title: 'Tarnished at the Erdtree',
+        artist: '@LandsBetween_Painter',
+        likes: 540,
+        liked: false,
+        image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80'
+      },
+      {
+        id: 'fa3',
+        title: 'Iron Man Neon Armor',
+        artist: '@CyberStark',
+        likes: 215,
+        liked: false,
+        image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&auto=format&fit=crop&q=80'
+      }
+    ];
+
+    const SEED_POSTS = [
+      {
+        id: 'p1',
+        author: 'GojoFan_99',
+        tag: 'Anime',
+        title: 'Who is strongest: Gojo Satoru or Sukuna at 20 Fingers?',
+        content: 'Assuming no domain burnout and full battle prep, who takes the win? Let\'s debate!',
+        likes: 45,
+        liked: false,
+        comments: [
+          { author: 'SukunaStan', text: 'Sukuna\'s world bisecting slash bypassed infinity!' },
+          { author: 'AnimeWatcher', text: 'Gojo\'s Six Eyes give him unlimited stamina though.' }
+        ]
+      },
+      {
+        id: 'p2',
+        author: 'MCU_Theorist',
+        tag: 'Marvel MCU',
+        title: 'Secret Wars will bring back Tobey Maguire & Andrew Garfield',
+        content: 'Mark my words, battleworld will feature all 3 Spider-Men uniting once more to fight Doom.',
+        likes: 88,
+        liked: false,
+        comments: [
+          { author: 'WebSlinger', text: 'I really hope so! No Way Home proved how great they are together.' }
+        ]
+      }
+    ];
+
+    const SEED_LEADERBOARD = [
+      { name: 'KaisenMaster', title: 'Sorcerer Supreme', points: 450 },
+      { name: 'EldenLord_42', title: 'Elden Lord', points: 380 },
+      { name: 'StarkTech', title: 'Avenger Leader', points: 310 },
+      { name: 'OtakuSupreme', title: 'Anime Expert', points: 290 }
+    ];
+
+    /* ==========================================================================
+       STATE MANAGEMENT & LOCAL STORAGE
+       ========================================================================== */
+    let appState = {
+      theme: 'dark',
+      activeSection: 'home',
+      activeCategory: 'All',
+      vault: [],
+      userScore: 0,
+      fandoms: SEED_FANDOMS,
+      news: SEED_NEWS,
+      quiz: SEED_QUIZ,
+      fanart: SEED_FANART,
+      posts: SEED_POSTS,
+      leaderboard: SEED_LEADERBOARD,
+      quizIndex: 0,
+      quizScore: 0,
+      quizAnswered: false
+    };
+
+    function loadLocalStorage() {
+      const saved = localStorage.getItem('fandomverse_app_state_v3');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          appState = { ...appState, ...parsed };
+        } catch(e) {
+          console.error("Could not parse saved state, using seeds.");
+        }
+      }
+    }
+
+    function saveLocalStorage() {
+      localStorage.setItem('fandomverse_app_state_v3', JSON.stringify({
+        theme: appState.theme,
+        vault: appState.vault,
+        userScore: appState.userScore,
+        news: appState.news,
+        fanart: appState.fanart,
+        posts: appState.posts,
+        leaderboard: appState.leaderboard
+      }));
+    }
+
+    /* ==========================================================================
+       CORE UI RENDERERS & TAB SWITCHING
+       ========================================================================== */
+    function initApp() {
+      loadLocalStorage();
+      applyTheme();
+      renderAll();
+    }
+
+    function renderAll() {
+      renderStats();
+      renderHomeFeatured();
+      renderDiscoverCards();
+      renderNews();
+      renderQuizQuestion();
+      renderFanArt();
+      renderPosts();
+      renderLeaderboard();
+      renderVaultModal();
+      updateUserPointsDisplay();
+    }
+
+    function switchSection(secId) {
+      appState.activeSection = secId;
+      document.querySelectorAll('.content-section').forEach(sec => sec.classList.add('hidden'));
+      const activeEl = document.getElementById(`sec-${secId}`);
+      if (activeEl) activeEl.classList.remove('hidden');
+
+      // Update Nav buttons state
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        btn.classList.remove('bg-brand-600', 'text-white', 'shadow-lg');
+        btn.classList.add('text-gray-300', 'hover:bg-brand-500/10');
+      });
+
+      const currentBtn = document.getElementById(`nav-btn-${secId}`);
+      if (currentBtn) {
+        currentBtn.classList.remove('text-gray-300', 'hover:bg-brand-500/10');
+        currentBtn.classList.add('bg-brand-600', 'text-white', 'shadow-lg');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function navClick(secId) {
+      switchSection(secId);
+      toggleMobileMenu();
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('hidden');
+      drawer.classList.toggle('flex');
+    }
+
+    function toggleTheme() {
+      appState.theme = appState.theme === 'dark' ? 'light' : 'dark';
+      applyTheme();
+      saveLocalStorage();
+      showToast(`Switched to ${appState.theme.toUpperCase()} Mode!`);
+    }
+
+    function applyTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+      if (appState.theme === 'light') {
+        html.classList.remove('dark');
+        html.classList.add('light');
+        document.body.classList.replace('bg-darkbg', 'bg-gray-100');
+        document.body.classList.replace('text-gray-100', 'text-gray-900');
+        if (icon) icon.className = 'fa-solid fa-sun text-yellow-500 text-lg';
+      } else {
+        html.classList.remove('light');
+        html.classList.add('dark');
+        document.body.classList.replace('bg-gray-100', 'bg-darkbg');
+        document.body.classList.replace('text-gray-900', 'text-gray-100');
+        if (icon) icon.className = 'fa-solid fa-moon text-brand-400 text-lg';
+      }
+    }
+
+    function renderStats() {
+      document.getElementById('stat-total-fandoms').innerText = appState.fandoms.length;
+      document.getElementById('stat-total-posts').innerText = appState.posts.length;
+      document.getElementById('stat-vault-count').innerText = appState.vault.length;
+      document.getElementById('vault-badge').innerText = appState.vault.length;
+    }
+
+    function updateUserPointsDisplay() {
+      document.getElementById('user-points-display').innerText = `Score: ${appState.userScore} pts`;
+    }
+
+    /* ==========================================================================
+       SECTION 1 & 2: DISCOVER & FEATURED CARDS
+       ========================================================================== */
+    function renderHomeFeatured() {
+      const container = document.getElementById('home-featured-grid');
+      container.innerHTML = '';
+      
+      const featuredList = appState.fandoms.filter(f => f.featured);
+      featuredList.forEach(item => {
+        container.appendChild(createFandomCardHTML(item));
+      });
+    }
+
+    function filterCategory(cat) {
+      appState.activeCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(pill => {
+        pill.classList.remove('bg-brand-600', 'text-white');
+        pill.classList.add('bg-black/40', 'text-gray-300');
+      });
+      event.target.classList.remove('bg-black/40', 'text-gray-300');
+      event.target.classList.add('bg-brand-600', 'text-white');
+      renderDiscoverCards();
+    }
+
+    function handleGlobalSearch(query) {
+      switchSection('discover');
+      const searchInput = document.getElementById('discover-search-input');
+      if (searchInput) {
+        searchInput.value = query;
+        renderDiscoverCards();
+      }
+    }
+
+    function renderDiscoverCards() {
+      const container = document.getElementById('discover-cards-grid');
+      container.innerHTML = '';
+
+      const searchVal = (document.getElementById('discover-search-input')?.value || '').toLowerCase();
+      
+      const filtered = appState.fandoms.filter(item => {
+        const matchesCat = appState.activeCategory === 'All' || item.category === appState.activeCategory;
+        const matchesSearch = item.title.toLowerCase().includes(searchVal) ||
+                              item.description.toLowerCase().includes(searchVal) ||
+                              item.creator.toLowerCase().includes(searchVal);
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-gray-400">
+            <i class="fa-solid fa-ghost text-4xl mb-3 text-brand-500/40"></i>
+            <p class="font-bold">No fandom items found matching criteria.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(item => {
+        container.appendChild(createFandomCardHTML(item));
+      });
+    }
+
+    function createFandomCardHTML(item) {
+      const card = document.createElement('div');
+      card.className = 'glass-panel rounded-2xl overflow-hidden border border-brand-500/20 flex flex-col hover:border-brand-500/50 transition-all hover:-translate-y-1 group';
+      
+      const isSaved = appState.vault.some(v => v.id === item.id);
+
+      card.innerHTML = `
+        <div class="relative h-44 overflow-hidden">
+          <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md text-[10px] font-bold text-brand-300 border border-brand-500/30">
+            ${item.category}
+          </div>
+          <button onclick="toggleVaultItem('${item.id}', event)" class="absolute top-3 right-3 w-8 h-8 rounded-xl bg-black/60 backdrop-blur-md text-sm ${isSaved ? 'text-pink-500' : 'text-gray-300'} hover:text-pink-400 flex items-center justify-center border border-brand-500/30">
+            <i class="fa-solid fa-bookmark"></i>
+          </button>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-brand font-bold text-lg text-white group-hover:text-brand-400 transition-colors">${item.title}</h3>
+              <span class="text-xs font-bold text-yellow-400"><i class="fa-solid fa-star mr-1"></i>${item.rating}</span>
+            </div>
+            <p class="text-xs text-brand-300 font-mono mb-2">${item.creator}</p>
+            <p class="text-xs text-gray-400 line-clamp-2 mb-4">${item.description}</p>
+          </div>
+          <button onclick="openDetailModal('${item.id}')" class="w-full py-2 rounded-xl bg-brand-500/10 hover:bg-brand-500/20 text-brand-300 border border-brand-500/30 text-xs font-semibold transition-all">
+            View Details & Lore
+          </button>
+        </div>
+      `;
+      return card;
+    }
+
+    function toggleVaultItem(fandomId, evt) {
+      if (evt) evt.stopPropagation();
+      const item = appState.fandoms.find(f => f.id === fandomId);
+      if (!item) return;
+
+      const idx = appState.vault.findIndex(v => v.id === fandomId);
+      if (idx >= 0) {
+        appState.vault.splice(idx, 1);
+        showToast(`Removed ${item.title} from Vault`, 'info');
+      } else {
+        appState.vault.push(item);
+        showToast(`Saved ${item.title} to Vault!`);
+      }
+
+      saveLocalStorage();
+      renderStats();
+      renderDiscoverCards();
+      renderHomeFeatured();
+      renderVaultModal();
+    }
+
+    function openDetailModal(id) {
+      const item = appState.fandoms.find(f => f.id === id);
+      if (!item) return;
+
+      const container = document.getElementById('modal-detail-content');
+      container.innerHTML = `
+        <img src="${item.image}" class="w-full h-52 object-cover rounded-2xl mb-2" />
+        <div class="flex items-center justify-between">
+          <span class="px-2.5 py-1 rounded-md bg-brand-500/20 text-brand-300 text-xs font-bold">${item.category}</span>
+          <span class="text-xs font-bold text-yellow-400"><i class="fa-solid fa-star mr-1"></i>${item.rating} / 10</span>
+        </div>
+        <h2 class="text-2xl font-extrabold font-brand text-white">${item.title}</h2>
+        <p class="text-xs text-brand-400 font-mono">Creator / Studio: ${item.creator}</p>
+        <p class="text-xs text-gray-300 leading-relaxed">${item.description}</p>
+        <div class="p-3 bg-black/40 rounded-xl border border-brand-500/20">
+          <p class="text-xs font-bold text-gray-200 mb-1">Catalog Info:</p>
+          <p class="text-xs text-gray-400">${item.episodes}</p>
+        </div>
+        <button onclick="toggleVaultItem('${item.id}')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 text-white font-semibold text-xs shadow-lg">
+          Save To Personal Vault
+        </button>
+      `;
+
+      openModal('modal-detail');
+    }
+
+    /* ==========================================================================
+       SECTION 3: TRENDING NEWS & UPVOTES
+       ========================================================================== */
+    function renderNews() {
+      const container = document.getElementById('news-grid');
+      container.innerHTML = '';
+
+      appState.news.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'glass-panel rounded-2xl overflow-hidden border border-brand-500/20 flex flex-col justify-between';
+        
+        card.innerHTML = `
+          <div>
+            <img src="${item.image}" class="w-full h-44 object-cover" />
+            <div class="p-5">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[10px] uppercase font-bold text-pink-400 tracking-wider">${item.category}</span>
+                <span class="text-[10px] text-gray-400 font-mono">${item.date}</span>
+              </div>
+              <h3 class="font-brand font-bold text-lg text-white mb-2">${item.title}</h3>
+              <p class="text-xs text-gray-300 leading-relaxed mb-4">${item.content}</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0 flex items-center justify-between">
+            <button onclick="upvoteNews('${item.id}')" class="px-4 py-2 rounded-xl bg-brand-500/10 hover:bg-brand-500/20 border border-brand-500/30 text-xs font-semibold text-brand-300 flex items-center gap-2 transition-all">
+              <i class="fa-solid fa-fire ${item.upvoted ? 'text-pink-500' : ''}"></i> ${item.upvotes} Upvotes
+            </button>
+            <button onclick="showToast('News link copied!')" class="text-gray-400 hover:text-white text-xs">
+              <i class="fa-solid fa-share-nodes"></i> Share
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function upvoteNews(newsId) {
+      const item = appState.news.find(n => n.id === newsId);
+      if (!item) return;
+
+      if (item.upvoted) {
+        item.upvotes--;
+        item.upvoted = false;
+        showToast('Upvote removed', 'info');
+      } else {
+        item.upvotes++;
+        item.upvoted = true;
+        showToast('Upvoted news item!');
+      }
+
+      saveLocalStorage();
+      renderNews();
+    }
+
+    /* ==========================================================================
+       SECTION 4: INTERACTIVE TRIVIA QUIZ ENGINE
+       ========================================================================== */
+    function renderQuizQuestion() {
+      const questionTitle = document.getElementById('quiz-question-title');
+      const optionsContainer = document.getElementById('quiz-options-container');
+      const feedback = document.getElementById('quiz-feedback');
+      const nextBtn = document.getElementById('quiz-next-btn');
+      const progressText = document.getElementById('quiz-progress-text');
+      const progressBar = document.getElementById('quiz-progress-bar');
+
+      if (!questionTitle) return;
+
+      const total = appState.quiz.length;
+      const current = appState.quizIndex;
+
+      if (current >= total) {
+        // Show result screen
+        document.getElementById('quiz-active-box').classList.add('hidden');
+        document.getElementById('quiz-result-box').classList.remove('hidden');
+        document.getElementById('quiz-score-summary').innerText = `You scored ${appState.quizScore} out of ${total * 10} points!`;
+        
+        // Add score to user profile
+        appState.userScore += appState.quizScore;
+        updateLeaderboardUserScore();
+        updateUserPointsDisplay();
+        saveLocalStorage();
+        return;
+      }
+
+      document.getElementById('quiz-active-box').classList.remove('hidden');
+      document.getElementById('quiz-result-box').classList.add('hidden');
+
+      const q = appState.quiz[current];
+      progressText.innerText = `Question ${current + 1} of ${total}`;
+      progressBar.style.width = `${((current + 1) / total) * 100}%`;
+
+      questionTitle.innerText = q.question;
+      optionsContainer.innerHTML = '';
+      feedback.classList.add('hidden');
+      nextBtn.classList.add('hidden');
+      appState.quizAnswered = false;
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'w-full text-left p-3.5 rounded-xl bg-black/40 border border-brand-500/20 hover:border-brand-500 text-xs sm:text-sm font-semibold text-gray-200 transition-all flex items-center justify-between';
+        btn.innerHTML = `<span>${opt}</span><i class="fa-regular fa-circle text-gray-500"></i>`;
+        btn.onclick = () => selectQuizAnswer(idx, btn);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function selectQuizAnswer(selectedIdx, btnEl) {
+      if (appState.quizAnswered) return;
+      appState.quizAnswered = true;
+
+      const q = appState.quiz[appState.quizIndex];
+      const feedback = document.getElementById('quiz-feedback');
+      const nextBtn = document.getElementById('quiz-next-btn');
+      const optionsButtons = document.getElementById('quiz-options-container').children;
+
+      if (selectedIdx === q.answer) {
+        appState.quizScore += 10;
+        btnEl.classList.remove('border-brand-500/20');
+        btnEl.classList.add('bg-green-500/20', 'border-green-500', 'text-green-300');
+        btnEl.querySelector('i').className = 'fa-solid fa-circle-check text-green-400';
+        
+        feedback.className = 'p-4 rounded-xl text-xs sm:text-sm font-medium mb-4 bg-green-500/20 border border-green-500/40 text-green-300';
+        feedback.innerHTML = `<i class="fa-solid fa-circle-check mr-2"></i><strong>Correct!</strong> ${q.explanation}`;
+        showToast('+10 Points Earned!');
+      } else {
+        btnEl.classList.remove('border-brand-500/20');
+        btnEl.classList.add('bg-red-500/20', 'border-red-500', 'text-red-300');
+        btnEl.querySelector('i').className = 'fa-solid fa-circle-xmark text-red-400';
+
+        // Highlight correct option
+        optionsButtons[q.answer].classList.add('bg-green-500/20', 'border-green-500', 'text-green-300');
+
+        feedback.className = 'p-4 rounded-xl text-xs sm:text-sm font-medium mb-4 bg-red-500/20 border border-red-500/40 text-red-300';
+        feedback.innerHTML = `<i class="fa-solid fa-circle-xmark mr-2"></i><strong>Incorrect!</strong> ${q.explanation}`;
+      }
+
+      feedback.classList.remove('hidden');
+      nextBtn.classList.remove('hidden');
+    }
+
+    function nextQuizQuestion() {
+      appState.quizIndex++;
+      renderQuizQuestion();
+    }
+
+    function resetQuiz() {
+      appState.quizIndex = 0;
+      appState.quizScore = 0;
+      renderQuizQuestion();
+    }
+
+    /* ==========================================================================
+       SECTION 5: FAN ART GALLERY & LIGHTBOX
+       ========================================================================== */
+    function renderFanArt() {
+      const container = document.getElementById('fanart-grid');
+      container.innerHTML = '';
+
+      appState.fanart.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'glass-panel rounded-2xl overflow-hidden border border-brand-500/20 group';
+        
+        card.innerHTML = `
+          <div class="relative h-60 overflow-hidden cursor-pointer" onclick="openLightbox('${item.image}', '${item.title}', '${item.artist}')">
+            <img src="${item.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span class="px-3 py-1.5 rounded-xl bg-black/60 text-white text-xs font-semibold"><i class="fa-solid fa-expand mr-1"></i> Expand</span>
+            </div>
+          </div>
+          <div class="p-4 flex items-center justify-between">
+            <div>
+              <h3 class="font-brand font-bold text-white text-sm">${item.title}</h3>
+              <p class="text-xs text-brand-400 font-mono">${item.artist}</p>
+            </div>
+            <button onclick="likeFanart('${item.id}')" class="px-3 py-1.5 rounded-xl bg-pink-500/10 border border-pink-500/30 text-pink-400 text-xs font-bold flex items-center gap-1.5 hover:bg-pink-500/20 transition-all">
+              <i class="fa-solid fa-heart"></i> ${item.likes}
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function openLightbox(imgUrl, title, artist) {
+      document.getElementById('lightbox-img').src = imgUrl;
+      document.getElementById('lightbox-title').innerText = title;
+      document.getElementById('lightbox-artist').innerText = artist;
+      openModal('modal-lightbox');
+    }
+
+    function likeFanart(id) {
+      const art = appState.fanart.find(a => a.id === id);
+      if (!art) return;
+      art.likes++;
+      saveLocalStorage();
+      renderFanArt();
+      showToast('Liked fan art!');
+    }
+
+    /* ==========================================================================
+       SECTION 6: COMMUNITY BOARD & COMMENTS
+       ========================================================================== */
+    function renderPosts() {
+      const container = document.getElementById('posts-container');
+      container.innerHTML = '';
+
+      appState.posts.forEach((post, pIdx) => {
+        const card = document.createElement('div');
+        card.className = 'glass-panel p-5 rounded-2xl border border-brand-500/20 flex flex-col gap-4';
+
+        const commentsHTML = post.comments.map(c => `
+          <div class="p-2.5 rounded-xl bg-black/30 text-xs border border-brand-500/10">
+            <span class="font-bold text-brand-300 mr-2">${c.author}:</span>
+            <span class="text-gray-300">${c.text}</span>
+          </div>
+        `).join('');
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-r from-brand-600 to-pink-500 flex items-center justify-center font-bold text-xs text-white">
+                ${post.author.charAt(0)}
+              </div>
+              <div>
+                <p class="text-xs font-bold text-white">${post.author}</p>
+                <span class="px-2 py-0.5 rounded bg-brand-500/20 text-[10px] font-bold text-brand-300">${post.tag}</span>
+              </div>
+            </div>
+            <button onclick="likePost(${pIdx})" class="px-3 py-1 rounded-xl bg-brand-500/10 border border-brand-500/30 text-xs text-brand-300 font-bold hover:bg-brand-500/20 transition-all">
+              <i class="fa-solid fa-thumbs-up mr-1"></i> ${post.likes}
+            </button>
+          </div>
+
+          <div>
+            <h3 class="font-brand font-bold text-base text-white mb-1">${post.title}</h3>
+            <p class="text-xs text-gray-300 leading-relaxed">${post.content}</p>
+          </div>
+
+          <!-- Comments Section -->
+          <div class="border-t border-brand-500/20 pt-3 flex flex-col gap-2">
+            <p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider">Comments (${post.comments.length})</p>
+            <div class="flex flex-col gap-2 max-h-36 overflow-y-auto">
+              ${commentsHTML || '<p class="text-xs text-gray-500 italic">No comments yet. Be the first!</p>'}
+            </div>
+
+            <!-- Comment Input Form -->
+            <form onsubmit="handleAddComment(event, ${pIdx})" class="flex gap-2 mt-1">
+              <input type="text" placeholder="Write a comment..." required class="flex-1 bg-black/40 border border-brand-500/20 rounded-xl px-3 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-brand-500" />
+              <button type="submit" class="px-3 py-1.5 rounded-xl bg-brand-600 text-white text-xs font-semibold hover:bg-brand-500 transition-all">Reply</button>
+            </form>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function likePost(pIdx) {
+      appState.posts[pIdx].likes++;
+      saveLocalStorage();
+      renderPosts();
+      showToast('Liked post!');
+    }
+
+    function handleAddComment(evt, pIdx) {
+      evt.preventDefault();
+      const input = evt.target.querySelector('input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      appState.posts[pIdx].comments.push({
+        author: 'You (Fanatic)',
+        text: text
+      });
+
+      saveLocalStorage();
+      renderPosts();
+      showToast('Comment added!');
+    }
+
+    function openNewPostModal() {
+      openModal('modal-new-post');
+    }
+
+    function handleCreatePost(evt) {
+      evt.preventDefault();
+      const title = document.getElementById('post-input-title').value;
+      const tag = document.getElementById('post-input-tag').value;
+      const content = document.getElementById('post-input-content').value;
+
+      appState.posts.unshift({
+        id: 'p_' + Date.now(),
+        author: 'You (Fanatic)',
+        tag,
+        title,
+        content,
+        likes: 1,
+        comments: []
+      });
+
+      saveLocalStorage();
+      renderPosts();
+      renderStats();
+      closeModal('modal-new-post');
+      showToast('Community post published!');
+      evt.target.reset();
+    }
+
+    /* ==========================================================================
+       SECTION 7: LEADERBOARD
+       ========================================================================== */
+    function renderLeaderboard() {
+      const tbody = document.getElementById('leaderboard-table-body');
+      tbody.innerHTML = '';
+
+      // Merge user into leaderboard
+      let fullList = [...appState.leaderboard];
+      const existingUserIdx = fullList.findIndex(u => u.name === 'You (Fanatic)');
+      if (existingUserIdx >= 0) {
+        fullList[existingUserIdx].points = appState.userScore;
+      } else {
+        fullList.push({ name: 'You (Fanatic)', title: 'Fandom Apprentice', points: appState.userScore });
+      }
+
+      // Sort by points descending
+      fullList.sort((a, b) => b.points - a.points);
+
+      fullList.forEach((user, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = user.name === 'You (Fanatic)' ? 'bg-brand-500/10 font-bold border-l-4 border-brand-500' : 'hover:bg-black/20';
+
+        tr.innerHTML = `
+          <td class="px-6 py-4 font-mono font-bold text-brand-400">#${idx + 1}</td>
+          <td class="px-6 py-4 flex items-center gap-2">
+            <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center text-xs text-white font-bold">
+              ${user.name.charAt(0)}
+            </div>
+            <span class="text-white">${user.name}</span>
+          </td>
+          <td class="px-6 py-4"><span class="px-2 py-1 rounded bg-black/40 border border-brand-500/20 text-xs text-gray-300">${user.title}</span></td>
+          <td class="px-6 py-4 text-right font-mono font-bold text-yellow-400">${user.points} pts</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function updateLeaderboardUserScore() {
+      renderLeaderboard();
+    }
+
+    /* ==========================================================================
+       SAVED VAULT MODAL
+       ========================================================================== */
+    function openVaultModal() {
+      renderVaultModal();
+      openModal('modal-vault');
+    }
+
+    function renderVaultModal() {
+      const container = document.getElementById('vault-items-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (appState.vault.length === 0) {
+        container.innerHTML = `
+          <div class="py-8 text-center text-gray-400 text-xs">
+            <i class="fa-solid fa-bookmark text-3xl mb-2 text-brand-500/30"></i>
+            <p>Your Vault is empty.</p>
+            <p class="text-[10px] text-gray-500 mt-1">Click the bookmark icon on any fandom card to save it here!</p>
+          </div>
+        `;
+        return;
+      }
+
+      appState.vault.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'p-3 rounded-xl bg-black/40 border border-brand-500/20 flex items-center justify-between gap-3';
+        card.innerHTML = `
+          <div class="flex items-center gap-3 overflow-hidden">
+            <img src="${item.image}" class="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
+            <div class="overflow-hidden">
+              <h4 class="font-brand font-bold text-sm text-white truncate">${item.title}</h4>
+              <p class="text-[10px] text-brand-400 font-mono">${item.category}</p>
+            </div>
+          </div>
+          <button onclick="toggleVaultItem('${item.id}')" class="p-2 text-red-400 hover:text-red-300 text-xs">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    /* ==========================================================================
+       UTILITY MODAL & TOAST HANDLERS
+       ========================================================================== */
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    }
+
+    function showToast(msg, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      const isSuccess = type === 'success';
+      toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl shadow-2xl backdrop-blur-md text-xs font-semibold text-white border transition-all transform translate-y-2 opacity-0 ${
+        isSuccess ? 'bg-brand-900/90 border-brand-500/50' : 'bg-gray-900/90 border-gray-600'
+      }`;
+
+      toast.innerHTML = `
+        <i class="${isSuccess ? 'fa-solid fa-circle-check text-brand-400' : 'fa-solid fa-circle-info text-blue-400'} text-base"></i>
+        <span>${msg}</span>
+      `;
+
+      container.appendChild(toast);
+
+      // Animate in
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      });
+
+      // Animate out
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
+    /* BOOT APP ON DOM READY */
+    window.addEventListener('DOMContentLoaded', () => {
+      initApp();
+      switchSection('home');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>K-Pop Hub | FandomVerse</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-black text-light">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container d-flex align-items-center">
+
+    <a class="navbar-brand fs-3 d-flex align-items-center gap-2 me-4" href="index.html">
+      <img src="./img/WhatsApp Image 2026-09-24 at 5.58.24 PM.jpeg"
+           alt="FandomVerse Logo"
+           class="navbar-logo">
+      <!--    <span class="text-nowrap">
+        <i class="bi bi-stars"></i> FandomVerse
+      </span> --> 
+    </a>
+
+    <button class="navbar-toggler ms-auto"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#nav"
+            aria-controls="nav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="index.html">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="anime.html">Anime</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="gaming.html">Gaming</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="movies.html">Movies</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="tvshows.html">TV Shows</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active px-3 text-nowrap" href="kpop.html">K-Pop</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="comics.html">Comics</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="manga.html">Manga</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap d-flex align-items-center gap-1"
+             href="bookmarks.html">
+            <i class="bi bi-bookmark-heart"></i>
+            <span>Saved</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="contact.html">Contact Us</a>
+        </li>
+
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a href="login.html"
+             class="btn login-btn px-3 d-flex align-items-center justify-content-center gap-1 text-nowrap">
+            <i class="bi bi-person"></i>
+            <span>Login</span>
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+</nav>
+
+<!-- CHATBOT SCRIPT -->
+<script src="javascript.js"></script>
+
+<!-- HERO BANNER -->
+<section class="anime-hero text-center text-light mt-5 pt-5">
+  <div class="container py-4">
+
+    <span class="badge bg-purple px-3 py-2 mb-3">
+      <i class="bi bi-music-note-beamed"></i> IDOL HUB
+    </span>
+
+    <h1 class="display-4 fw-bold glow-title">
+      K-Pop <span class="text-purple">Universe</span>
+    </h1>
+
+    <p class="text-secondary max-w-600 mx-auto">
+      Stay updated with top idols, viral music videos, comeback news,
+      and concert galleries.
+    </p>
+
+  </div>
+</section>
+
+<!-- FILTER & SORT CONTROLS -->
+<section class="py-3 bg-dark border-top border-bottom border-secondary">
+
+  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+
+    <div class="d-flex flex-wrap align-items-center gap-2" id="filterPills">
+
+      <button class="genre-pill active"
+              onclick="filterCategory('all', this)">
+        All Content
+      </button>
+
+      <button class="genre-pill"
+              onclick="filterCategory('video', this)">
+        Music Videos
+      </button>
+
+      <button class="genre-pill"
+              onclick="filterCategory('article', this)">
+        News & Articles
+      </button>
+
+      <button class="genre-pill"
+              onclick="filterCategory('gallery', this)">
+        Concept Gallery
+      </button>
+
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+
+      <small class="text-secondary text-nowrap">
+        Sort By:
+      </small>
+
+      <select class="form-select bg-black text-light border-secondary"
+              id="sortSelect"
+              onchange="sortCards()">
+        <option value="newest">Newest First</option>
+        <option value="alpha">Alphabetical</option>
+        <option value="popular">Popularity</option>
+      </select>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FEATURED IDOL PROFILES -->
+<section class="py-5 container">
+
+  <h3 class="fw-bold mb-4">
+    <i class="bi bi-person-badge text-purple"></i>
+    Featured K-Pop Idols
+  </h3>
+
+  <div class="row g-4" id="characterContainer">
+
+    <!-- Profile 1 -->
+    <div class="col-6 col-md-4 col-lg-2">
+
+      <div class="category-card p-3 rounded-4 text-center h-100 d-flex flex-column">
+
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300"
+             class="img-fluid rounded-circle mb-3 mx-auto"
+             style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">
+          Jungkook
+        </h6>
+
+        <small class="text-purple d-block mb-2">
+          BTS
+        </small>
+
+        <button class="btn btn-sm btn-outline-light w-100 mt-auto"
+                onclick="showCharModal(
+                'Jungkook',
+                'BTS',
+                'Main vocalist of global sensation BTS and chart-topping solo artist.',
+                'Golden Maknae, Lead Dancer, Vocalist')">
+          Profile
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Profile 2 -->
+    <div class="col-6 col-md-4 col-lg-2">
+
+      <div class="category-card p-3 rounded-4 text-center h-100 d-flex flex-column">
+
+        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300"
+             class="img-fluid rounded-circle mb-3 mx-auto"
+             style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">
+          Lisa
+        </h6>
+
+        <small class="text-purple d-block mb-2">
+          BLACKPINK
+        </small>
+
+        <button class="btn btn-sm btn-outline-light w-100 mt-auto"
+                onclick="showCharModal(
+                'Lisa Manobal',
+                'BLACKPINK',
+                'Main dancer and rapper of BLACKPINK, global fashion icon.',
+                'Stage Presence, Rap Queen, Main Dancer')">
+          Profile
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Profile 3 -->
+    <div class="col-6 col-md-4 col-lg-2">
+
+      <div class="category-card p-3 rounded-4 text-center h-100 d-flex flex-column">
+
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300"
+             class="img-fluid rounded-circle mb-3 mx-auto"
+             style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">
+          Felix
+        </h6>
+
+        <small class="text-purple d-block mb-2">
+          Stray Kids
+        </small>
+
+        <button class="btn btn-sm btn-outline-light w-100 mt-auto"
+                onclick="showCharModal(
+                'Felix',
+                'Stray Kids',
+                'Rapper and dancer known worldwide for his deep iconic voice.',
+                'Deep Voice, Lead Dancer, Visual')">
+          Profile
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Profile 4 -->
+    <div class="col-6 col-md-4 col-lg-2">
+
+      <div class="category-card p-3 rounded-4 text-center h-100 d-flex flex-column">
+
+        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300"
+             class="img-fluid rounded-circle mb-3 mx-auto"
+             style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">
+          Hanni
+        </h6>
+
+        <small class="text-purple d-block mb-2">
+          NewJeans
+        </small>
+
+        <button class="btn btn-sm btn-outline-light w-100 mt-auto"
+                onclick="showCharModal(
+                'Hanni Pham',
+                'NewJeans',
+                'Vietnamese-Australian singer and main vocalist in NewJeans.',
+                'Sweet Vocals, Songwriter, Trendy Style')">
+          Profile
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Profile 5 -->
+    <div class="col-6 col-md-4 col-lg-2">
+
+      <div class="category-card p-3 rounded-4 text-center h-100 d-flex flex-column">
+
+        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300"
+             class="img-fluid rounded-circle mb-3 mx-auto"
+             style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">
+          Jihyo
+        </h6>
+
+        <small class="text-purple d-block mb-2">
+          TWICE
+        </small>
+
+        <button class="btn btn-sm btn-outline-light w-100 mt-auto"
+                onclick="showCharModal(
+                'Park Jihyo',
+                'TWICE',
+                'Leader and main vocalist of iconic girl group TWICE.',
+                'Powerhouse Vocals, Great Leader, Dancer')">
+          Profile
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- K-POP CONTENT GRID -->
+<section class="py-4 container">
+
+  <h3 class="fw-bold mb-4">
+    <i class="bi bi-play-btn text-purple"></i>
+    Music Videos, News & Teasers
+  </h3>
+
+  <div class="row g-4" id="contentGrid">
+
+    <!-- Video Card 1 -->
+    <div class="col-md-4 content-card"
+         data-type="video"
+         data-name="BTS Dynamite Official MV"
+         data-pop="100">
+
+      <div class="category-card rounded-4 overflow-hidden h-100 p-0 d-flex flex-column">
+
+        <div class="position-relative">
+
+          <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600"
+               class="w-100"
+               style="height:200px;object-fit:cover;">
+
+          <span class="badge bg-danger position-absolute top-0 end-0 m-3">
+            <i class="bi bi-play-circle-fill"></i> Music Video
+          </span>
+
+        </div>
+
+        <div class="p-3 d-flex flex-column flex-grow-1">
+
+          <h5 class="fw-bold text-light">
+            BTS (방탄소년단) 'Dynamite' MV
+          </h5>
+
+          <p class="small text-secondary">
+            The record-breaking disco-pop anthem that topped charts
+            across the world.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+
+            <button class="btn bg-purple text-white btn-sm"
+                    onclick="playVideo(
+                    'https://www.youtube.com/embed/gdZLi9oWNZg',
+                    'BTS Dynamite MV')">
+              <i class="bi bi-play-fill"></i> Watch MV
+            </button>
+
+            <button class="btn btn-outline-light btn-sm btn-bookmark"
+                    onclick="toggleBookmark('BTS Dynamite MV', this)">
+              <i class="bi bi-bookmark"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Video Card 2 -->
+    <div class="col-md-4 content-card"
+         data-type="video"
+         data-name="BLACKPINK Pink Venom MV"
+         data-pop="98">
+
+      <div class="category-card rounded-4 overflow-hidden h-100 p-0 d-flex flex-column">
+
+        <div class="position-relative">
+
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600"
+               class="w-100"
+               style="height:200px;object-fit:cover;">
+
+          <span class="badge bg-danger position-absolute top-0 end-0 m-3">
+            <i class="bi bi-play-circle-fill"></i> Music Video
+          </span>
+
+        </div>
+
+        <div class="p-3 d-flex flex-column flex-grow-1">
+
+          <h5 class="fw-bold text-light">
+            BLACKPINK 'Pink Venom' MV
+          </h5>
+
+          <p class="small text-secondary">
+            An intense hip-hop single blending traditional Korean
+            instruments with modern beats.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+
+            <button class="btn bg-purple text-white btn-sm"
+                    onclick="playVideo(
+                    'https://www.youtube.com/embed/gQlMMD8auMs',
+                    'BLACKPINK Pink Venom MV')">
+              <i class="bi bi-play-fill"></i> Watch MV
+            </button>
+
+            <button class="btn btn-outline-light btn-sm btn-bookmark"
+                    onclick="toggleBookmark('BLACKPINK Pink Venom MV', this)">
+              <i class="bi bi-bookmark"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Video Card 3 -->
+    <div class="col-md-4 content-card"
+         data-type="video"
+         data-name="Stray Kids S-Class MV"
+         data-pop="95">
+
+      <div class="category-card rounded-4 overflow-hidden h-100 p-0 d-flex flex-column">
+
+        <div class="position-relative">
+
+          <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600"
+               class="w-100"
+               style="height:200px;object-fit:cover;">
+
+          <span class="badge bg-danger position-absolute top-0 end-0 m-3">
+            <i class="bi bi-play-circle-fill"></i> Music Video
+          </span>
+
+        </div>
+
+        <div class="p-3 d-flex flex-column flex-grow-1">
+
+          <h5 class="fw-bold text-light">
+            Stray Kids 'S-Class' Official MV
+          </h5>
+
+          <p class="small text-secondary">
+            A unique and eccentric track showcasing Stray Kids'
+            signature self-produced sound.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+
+            <button class="btn bg-purple text-white btn-sm"
+                    onclick="playVideo(
+                    'https://www.youtube.com/embed/js1CtxSY38I',
+                    'Stray Kids S-Class MV')">
+              <i class="bi bi-play-fill"></i> Watch MV
+            </button>
+
+            <button class="btn btn-outline-light btn-sm btn-bookmark"
+                    onclick="toggleBookmark('Stray Kids S-Class MV', this)">
+              <i class="bi bi-bookmark"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Article Card -->
+    <div class="col-md-4 content-card"
+         data-type="article"
+         data-name="Top K-Pop World Tours 2026"
+         data-pop="91">
+
+      <div class="category-card rounded-4 overflow-hidden h-100 p-0 d-flex flex-column">
+
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600"
+             class="w-100"
+             style="height:200px;object-fit:cover;">
+
+        <div class="p-3 d-flex flex-column flex-grow-1">
+
+          <span class="badge bg-purple mb-2 align-self-start">
+            Article
+          </span>
+
+          <h5 class="fw-bold text-light">
+            Top 10 Highest Grossing K-Pop Tours
+          </h5>
+
+          <p class="small text-secondary">
+            A deep dive into how stadium concerts changed the global
+            music touring landscape forever.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+
+            <button class="btn btn-outline-light btn-sm btn-bookmark"
+                    onclick="toggleBookmark(
+                    'Top K-Pop Tours Article',
+                    this)">
+              <i class="bi bi-bookmark"></i> Save Article
+            </button>
+
+            <small class="text-secondary">
+              4 min read
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Gallery Card -->
+    <div class="col-md-4 content-card"
+         data-type="gallery"
+         data-name="Iconic Stage Outfits Gallery"
+         data-pop="88">
+
+      <div class="category-card rounded-4 overflow-hidden h-100 p-0 d-flex flex-column">
+
+        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600"
+             class="w-100"
+             style="height:200px;object-fit:cover;">
+
+        <div class="p-3 d-flex flex-column flex-grow-1">
+
+          <span class="badge bg-success mb-2 align-self-start">
+            Gallery
+          </span>
+
+          <h5 class="fw-bold text-light">
+            Iconic K-Pop Stage Outfits
+          </h5>
+
+          <p class="small text-secondary">
+            High-definition collection of the most viral and stylish
+            concert stage concepts.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+
+            <button class="btn btn-outline-light btn-sm btn-bookmark"
+                    onclick="toggleBookmark(
+                    'Stage Outfits Gallery',
+                    this)">
+              <i class="bi bi-bookmark"></i> Save Gallery
+            </button>
+
+            <small class="text-secondary">
+              20 Photos
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- VIDEO PLAYER MODAL -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+
+    <div class="modal-content bg-black border border-purple">
+
+      <div class="modal-header border-secondary">
+
+        <h5 class="modal-title text-purple fw-bold"
+            id="videoModalTitle">
+          Watch MV
+        </h5>
+
+        <button type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="modal"
+                onclick="stopVideo()">
+        </button>
+
+      </div>
+
+      <div class="modal-body p-0">
+
+        <div class="ratio ratio-16x9">
+
+          <iframe id="videoIframe"
+                  src=""
+                  allowfullscreen
+                  allow="autoplay">
+          </iframe>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- IDOL DETAIL MODAL -->
+<div class="modal fade" id="charModal" tabindex="-1">
+
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content bg-dark text-light border border-secondary">
+
+      <div class="modal-header border-secondary">
+
+        <h5 class="modal-title text-purple fw-bold"
+            id="mCharName">
+          Idol Name
+        </h5>
+
+        <button type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="modal">
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <p>
+          <strong>Group / Label:</strong>
+          <span id="mCharSeries" class="text-info"></span>
+        </p>
+
+        <p>
+          <strong>Biography:</strong>
+          <span id="mCharBio"></span>
+        </p>
+
+        <p>
+          <strong>Roles & Specialty:</strong>
+          <span id="mCharTraits" class="badge bg-purple"></span>
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-black border-top border-secondary py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-5">
+        <h4 class="text-purple fw-bold">
+          <i class="bi bi-stars"></i> FandomVerse
+        </h4>
+        <p class="text-secondary">The ultimate portal for anime, gaming, movies, TV shows, K-Pop, comics and manga fans.</p>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h6>Explore</h6>
+        <a href="anime.html" class="d-block text-secondary text-decoration-none mb-2">Anime</a>
+        <a href="gaming.html" class="d-block text-secondary text-decoration-none mb-2">Gaming</a>
+        <a href="movies.html" class="d-block text-secondary text-decoration-none mb-2">Movies</a>
+        <a href="manga.html" class="d-block text-secondary text-decoration-none">Manga</a>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h6>Community</h6>
+        <a href="events.html" class="d-block text-secondary text-decoration-none mb-2">Events</a>
+        <a href="bookmarks.html" class="d-block text-secondary text-decoration-none mb-2">Bookmarks</a>
+        <a href="merchandise.html" class="d-block text-secondary text-decoration-none">Merchandise</a>
+      </div>
+
+      <div class="col-md-3">
+        <h6>Follow The Universe</h6>
+        <div class="d-flex gap-3 fs-4">
+          <a href="#" class="text-secondary"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-discord"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-secondary my-4">
+
+    <div class="text-center">
+      <small class="text-secondary">© 2026 FandomVerse. All rights reserved.</small>
+    </div>
+  </div>
+</footer>
+
+<!-- BOOTSTRAP -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  document.querySelectorAll('#contentGrid .content-card')
+    .forEach((card, idx) => {
+      card.setAttribute('data-index', idx);
+    });
+
+  updateBookmarkIcons();
+
+});
+
+function playVideo(url, title) {
+
+  document.getElementById('videoModalTitle').innerText = title;
+
+  document.getElementById('videoIframe').src =
+    url + "?autoplay=1";
+
+  let myModal =
+    new bootstrap.Modal(
+      document.getElementById('videoModal')
+    );
+
+  myModal.show();
+
+}
+
+function stopVideo() {
+
+  document.getElementById('videoIframe').src = "";
+
+}
+
+const videoModal =
+  document.getElementById('videoModal');
+
+if (videoModal) {
+
+  videoModal.addEventListener(
+    'hidden.bs.modal',
+    function () {
+      stopVideo();
+    }
+  );
+
+}
+
+function showCharModal(name, group, bio, traits) {
+
+  document.getElementById('mCharName').innerText = name;
+  document.getElementById('mCharSeries').innerText = group;
+  document.getElementById('mCharBio').innerText = bio;
+  document.getElementById('mCharTraits').innerText = traits;
+
+  new bootstrap.Modal(
+    document.getElementById('charModal')
+  ).show();
+
+}
+
+function toggleBookmark(itemTitle, btn) {
+
+  let bookmarks =
+    JSON.parse(
+      localStorage.getItem('fandom_bookmarks') || '[]'
+    );
+
+  let index =
+    bookmarks.indexOf(itemTitle);
+
+  let icon =
+    btn.querySelector('i');
+
+  if (index === -1) {
+
+    bookmarks.push(itemTitle);
+
+    localStorage.setItem(
+      'fandom_bookmarks',
+      JSON.stringify(bookmarks)
+    );
+
+    alert(
+      '"' + itemTitle +
+      '" saved to your bookmarks!'
+    );
+
+    if (icon) {
+
+      icon.className =
+        'bi bi-bookmark-fill text-warning';
+
+    }
+
+  } else {
+
+    bookmarks.splice(index, 1);
+
+    localStorage.setItem(
+      'fandom_bookmarks',
+      JSON.stringify(bookmarks)
+    );
+
+    alert(
+      '"' + itemTitle +
+      '" removed from bookmarks!'
+    );
+
+    if (icon) {
+
+      icon.className =
+        'bi bi-bookmark';
+
+    }
+
+  }
+
+}
+
+function updateBookmarkIcons() {
+
+  let bookmarks =
+    JSON.parse(
+      localStorage.getItem('fandom_bookmarks') || '[]'
+    );
+
+  document.querySelectorAll('.content-card')
+    .forEach(card => {
+
+      let cardName =
+        card.getAttribute('data-name');
+
+      let bmBtn =
+        card.querySelector('.btn-bookmark');
+
+      if (bmBtn && cardName) {
+
+        let icon =
+          bmBtn.querySelector('i');
+
+        let isBookmarked =
+          bookmarks.some(
+            b =>
+              cardName.includes(b) ||
+              b.includes(cardName)
+          );
+
+        if (isBookmarked && icon) {
+
+          icon.className =
+            'bi bi-bookmark-fill text-warning';
+
+        }
+
+      }
+
+    });
+
+}
+
+function filterCategory(type, element) {
+
+  document.querySelectorAll('.genre-pill')
+    .forEach(p =>
+      p.classList.remove('active')
+    );
+
+  if (element) {
+
+    element.classList.add('active');
+
+  }
+
+  document.querySelectorAll('.content-card')
+    .forEach(card => {
+
+      if (
+        type === 'all' ||
+        card.getAttribute('data-type') === type
+      ) {
+
+        card.style.display = '';
+
+      } else {
+
+        card.style.display = 'none';
+
+      }
+
+    });
+
+}
+
+function sortCards() {
+
+  const grid =
+    document.getElementById('contentGrid');
+
+  if (!grid) return;
+
+  const cards =
+    Array.from(
+      grid.querySelectorAll('.content-card')
+    );
+
+  const sortValue =
+    document.getElementById('sortSelect').value;
+
+  cards.sort((a, b) => {
+
+    if (sortValue === 'alpha') {
+
+      return a.getAttribute('data-name')
+        .localeCompare(
+          b.getAttribute('data-name')
+        );
+
+    }
+
+    if (sortValue === 'popular') {
+
+      return parseInt(
+        b.getAttribute('data-pop')
+      ) -
+      parseInt(
+        a.getAttribute('data-pop')
+      );
+
+    }
+
+    return parseInt(
+      a.getAttribute('data-index')
+    ) -
+    parseInt(
+      b.getAttribute('data-index')
+    );
+
+  });
+
+  cards.forEach(card => {
+
+    grid.appendChild(card);
+
+  });
+
+}
+
+</script>
+
+</body>
+</html>

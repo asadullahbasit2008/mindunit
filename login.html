@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | FandomVerse</title>
+  
+  <!-- Bootstrap 5.3 CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    body {
+      background-color: #0b0d12;
+      background-image:
+        radial-gradient(circle at 50% 30%, rgba(53, 234, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 70%, rgba(255, 10, 108, 0.08) 0%, transparent 50%);
+    }
+
+    .login-wrapper {
+      min-height: 70vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      position: relative;
+      width: 220px;
+      height: 60px;
+      padding: 3px;
+      border-radius: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                  height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+    }
+
+    .login-container:hover,
+    .login-container.active {
+      width: 320px;
+      height: 380px;
+      border-radius: 24px;
+    }
+
+    .login-container::before {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 22px;
+      background: conic-gradient(
+        from var(--angle),
+        transparent 0deg 36deg,
+        #35eaff 36deg 48deg,
+        transparent 48deg 126deg,
+        #ff0a6c 126deg 138deg,
+        transparent 138deg 216deg,
+        #35eaff 216deg 228deg,
+        transparent 228deg 306deg,
+        #ff0a6c 306deg 318deg,
+        transparent 318deg 360deg
+      );
+      filter: blur(2px) drop-shadow(0 0 12px #35eaff);
+      animation: neon-rotate 5s linear infinite;
+      z-index: 1;
+      transition: border-radius 0.5s ease;
+    }
+
+    .login-container:hover::before,
+    .login-container.active::before {
+      border-radius: 28px;
+    }
+
+    @keyframes neon-rotate {
+      to {
+        --angle: 360deg;
+      }
+    }
+
+    .card-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #12151d;
+      border-radius: 15px;
+      z-index: 2;
+      padding: 12px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+      transition: border-radius 0.5s ease, padding 0.5s ease;
+    }
+
+    .login-container:hover .card-content,
+    .login-container.active .card-content {
+      border-radius: 21px;
+      padding: 30px 25px;
+      justify-content: flex-start;
+    }
+
+    .title-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      letter-spacing: 2px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      user-select: none;
+      transition: margin-bottom 0.4s ease;
+    }
+
+    .login-container:hover .title-bar,
+    .login-container.active .title-bar {
+      margin-bottom: 25px;
+    }
+
+    .magenta-dot {
+      color: #ff0a6c;
+      font-size: 0.9rem;
+    }
+
+    .cyan-icon {
+      color: #35eaff;
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      width: 100%;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .login-container:hover .form-group,
+    .login-container.active .form-group {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+      transition-delay: 0.15s;
+    }
+
+    .input-box {
+      width: 100%;
+      padding: 12px 16px;
+      background: #1a1e29;
+      border: 1px solid #282e3f;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .input-box::placeholder {
+      color: #6c757d;
+    }
+
+    .input-box:focus {
+      border-color: #35eaff;
+      box-shadow: 0 0 8px rgba(53, 234, 255, 0.3);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 20px;
+      background: #35eaff;
+      color: #0b0d12;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(53, 234, 255, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: #4ef0ff;
+      transform: translateY(-1px);
+      box-shadow: 0 0 20px rgba(53, 234, 255, 0.7);
+    }
+
+    .links {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 15px;
+      font-size: 0.8rem;
+    }
+
+    .links a {
+      color: #8a94a6;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .links a:hover {
+      color: #fff;
+    }
+
+    .links a.signup {
+      color: #ff0a6c;
+      font-weight: 600;
+    }
+
+    .links a.signup:hover {
+      color: #ff478c;
+      text-shadow: 0 0 5px rgba(255, 10, 108, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-dark text-light d-flex flex-column min-vh-100">
+
+<div id="progress"></div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container d-flex align-items-center">
+
+    <a class="navbar-brand fs-3 d-flex align-items-center gap-2 me-4" href="index.html">
+      <img src="./img/WhatsApp Image 2026-09-24 at 5.58.24 PM.jpeg"
+           alt="FandomVerse Logo"
+           class="navbar-logo">
+    </a>
+
+    <button class="navbar-toggler ms-auto"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#nav"
+            aria-controls="nav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="anime.html">Anime</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="gaming.html">Gaming</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="movies.html">Movies</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="tvshows.html">TV Shows</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="kpop.html">K-Pop</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="comics.html">Comics</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="manga.html">Manga</a></li>
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap d-flex align-items-center gap-1" href="bookmarks.html">
+            <i class="bi bi-bookmark-heart"></i>
+            <span>Saved</span>
+          </a>
+        </li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="contact.html">Contact Us</a></li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a href="login.html" class="btn login-btn active px-3 d-flex align-items-center justify-content-center gap-1 text-nowrap">
+            <i class="bi bi-person"></i>
+            <span>Login</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Main Login Section -->
+<main class="login-wrapper my-5 pt-5">
+  <div class="login-container" id="loginCard">
+    <div class="card-content">
+      <div class="title-bar">
+        <span class="magenta-dot">&#9632;</span>
+        <span>LOGIN</span>
+        <span class="cyan-icon">&#128274;</span>
+      </div>
+
+      <form class="form-group" id="loginForm">
+        <input type="text" id="username" class="input-box" placeholder="Username" required autocomplete="username">
+        <input type="password" id="password" class="input-box" placeholder="Password" required autocomplete="current-password">
+        <button type="submit" class="btn-submit">Sign in</button>
+
+        <div class="links">
+          <a href="#">Forgot Password</a>
+          <a href="#" class="signup">Sign up</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-black border-top border-secondary py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-5">
+        <h4 class="text-purple fw-bold"><i class="bi bi-stars"></i> FandomVerse</h4>
+        <p class="text-secondary">The ultimate portal for anime, gaming, movies, TV shows, K-Pop, comics and manga fans.</p>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h6>Explore</h6>
+        <a href="anime.html" class="d-block text-secondary text-decoration-none mb-2">Anime</a>
+        <a href="gaming.html" class="d-block text-secondary text-decoration-none mb-2">Gaming</a>
+        <a href="movies.html" class="d-block text-secondary text-decoration-none mb-2">Movies</a>
+        <a href="manga.html" class="d-block text-secondary text-decoration-none">Manga</a>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h6>Community</h6>
+        <a href="events.html" class="d-block text-secondary text-decoration-none mb-2">Events</a>
+        <a href="bookmarks.html" class="d-block text-secondary text-decoration-none mb-2">Bookmarks</a>
+        <a href="merchandise.html" class="d-block text-secondary text-decoration-none">Merchandise</a>
+      </div>
+
+      <div class="col-md-3">
+        <h6>Follow The Universe</h6>
+        <div class="d-flex gap-3 fs-4">
+          <a href="#" class="text-secondary"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-discord"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-secondary my-4">
+
+    <div class="text-center">
+      <small class="text-secondary">© 2026 FandomVerse. All rights reserved.</small>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const card = document.getElementById('loginCard');
+  const form = document.getElementById('loginForm');
+
+  card.addEventListener('click', (e) => {
+    if (!e.target.closest('input') && !e.target.closest('button') && !e.target.closest('a')) {
+      card.classList.toggle('active');
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!card.contains(e.target)) {
+      card.classList.remove('active');
+    }
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const user = document.getElementById('username').value;
+    alert(`Welcome back, ${user}! Redirecting to homepage...`);
+    window.location.href = "index.html";
+  });
+
+  // Scroll progress bar
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('progress').style.width = scrolled + '%';
+  });
+</script>
+<script src="javascript.js"></script>
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FandomVerse | Fandom Universe</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<script src="javascript.js"></script>
+
+<div id="progress"></div>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container d-flex align-items-center">
+
+    <a class="navbar-brand fs-3 d-flex align-items-center gap-2 me-4" href="index.html">
+      <img src="./img/WhatsApp Image 2026-09-24 at 5.58.24 PM.jpeg" alt="FandomVerse Logo" class="navbar-logo">
+    </a>
+
+    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item">
+          <a class="nav-link active px-3 text-nowrap" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="anime.html">Anime</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="gaming.html">Gaming</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="movies.html">Movies</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="tvshows.html">TV Shows</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="kpop.html">K-Pop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="comics.html">Comics</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="manga.html">Manga</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap d-flex align-items-center gap-1" href="bookmarks.html">
+            <i class="bi bi-bookmark-heart"></i>
+            <span>Saved</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="contact.html">Contact Us</a>
+        </li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a href="login.html" class="btn login-btn px-3 d-flex align-items-center justify-content-center gap-1 text-nowrap">
+            <i class="bi bi-person"></i>
+            <span>Login</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<section class="hero">
+  <video autoplay muted loop playsinline class="section-bg-video">
+    <source src="./videos/bg_video.mp4" type="video/mp4">
+  </video>
+
+  <div class="particle p1"></div>
+  <div class="particle p2"></div>
+  <div class="particle p3"></div>
+  <div class="particle p4"></div>
+  <div class="particle p5"></div>
+  <div class="particle p6"></div>
+
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7 hero-content text-center text-lg-start">
+        <span class="badge bg-purple px-3 py-2 mb-4">
+          <i class="bi bi-stars"></i>
+          WELCOME TO THE FANDOM UNIVERSE
+        </span>
+
+        <h1>
+          Where Every
+          <span id="fandomText">Fandom</span>
+          <br>
+          Comes Alive.
+        </h1>
+
+        <p class="hero-text fs-5 mt-4">
+          Explore anime, gaming, movies, TV shows, K-Pop, comics and manga — all inside one immersive fandom universe.
+        </p>
+
+        <div class="d-flex gap-3 mt-4 justify-content-center justify-content-lg-start flex-wrap">
+          <a href="#categories" class="btn btn-lg bg-purple text-white px-4">
+            <i class="bi bi-compass"></i>
+            Explore Fandoms
+          </a>
+          <a href="#featured" class="btn btn-lg btn-outline-light px-4">
+            Discover More
+            <i class="bi bi-arrow-down"></i>
+          </a>
+        </div>
+
+        <div class="input-group input-group-lg search-box rounded-3 mt-5 mx-auto mx-lg-0" style="max-width:620px">
+          <span class="input-group-text bg-transparent text-purple border-0">
+            <i class="bi bi-search"></i>
+          </span>
+          <input type="text" id="search" class="form-control border-0" placeholder="Search anime, manga, games...">
+          <button class="btn bg-purple text-white">Search</button>
+        </div>
+
+        <p id="searchMessage" class="text-purple small mt-2"></p>
+      </div>
+
+      <div class="col-lg-5 d-none d-lg-block hero-visual">
+        <img src="./img/hero.png" class="img-fluid hero-image" alt="FandomVerse">
+        <div class="floating-badge">
+          <div class="bg-dark border border-secondary rounded-4 p-3 shadow">
+            <div class="d-flex align-items-center gap-3">
+              <div class="bg-purple rounded-circle p-2">
+                <i class="bi bi-fire"></i>
+              </div>
+              <div>
+                <small class="text-secondary">TRENDING</small>
+                <div class="fw-bold">Anime Universe</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats py-4">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-3 mb-3 mb-md-0">
+        <div class="stat-number" data-target="12500">0</div>
+        <small class="text-secondary">Fandom Visitors</small>
+      </div>
+      <div class="col-md-3 mb-3 mb-md-0">
+        <div class="stat-number" data-target="7">0</div>
+        <small class="text-secondary">Fandom Worlds</small>
+      </div>
+      <div class="col-md-3 mb-3 mb-md-0">
+        <div class="stat-number" data-target="350">0</div>
+        <small class="text-secondary">Featured Items</small>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-number" id="clock">00:00:00</div>
+        <small class="text-secondary">Live Time</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="categories" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <p class="text-purple fw-bold">EXPLORE THE UNIVERSE</p>
+      <h2 class="display-5 fw-bold">
+        Choose Your <span class="text-purple">Fandom</span>
+      </h2>
+      <p class="text-secondary">Seven worlds. One ultimate fandom portal.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-6 col-md-4 col-lg-3 reveal">
+        <a href="anime.html" class="text-decoration-none">
+          <div class="category-card rounded-4 p-4 text-center h-100">
+            <i class="bi bi-lightning-charge-fill fs-1 text-purple"></i>
+            <h5 class="text-white mt-3">Anime</h5>
+            <p class="small text-secondary">Characters & stories</p>
+            <span class="btn btn-sm btn-outline-light">Explore</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 reveal">
+        <a href="gaming.html" class="text-decoration-none">
+          <div class="category-card rounded-4 p-4 text-center h-100">
+            <i class="bi bi-controller fs-1 text-purple"></i>
+            <h5 class="text-white mt-3">Gaming</h5>
+            <p class="small text-secondary">Games & events</p>
+            <span class="btn btn-sm btn-outline-light">Explore</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 reveal">
+        <a href="movies.html" class="text-decoration-none">
+          <div class="category-card rounded-4 p-4 text-center h-100">
+            <i class="bi bi-film fs-1 text-purple"></i>
+            <h5 class="text-white mt-3">Movies</h5>
+            <p class="small text-secondary">Films & trailers</p>
+            <span class="btn btn-sm btn-outline-light">Explore</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 reveal">
+        <a href="tvshows.html" class="text-decoration-none">
+          <div class="category-card rounded-4 p-4 text-center h-100">
+            <i class="bi bi-tv fs-1 text-purple"></i>
+            <h5 class="text-white mt-3">TV Shows</h5>
+            <p class="small text-secondary">Series & characters</p>
+            <span class="btn btn-sm btn-outline-light">Explore</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 reveal">
+        <a href="kpop.html" class="text-decoration-none">
+          <div class="category-card rounded-4 p-4 text-center h-100">
+            <i class="bi bi-music-note-beamed fs-1 text-purple"></i>
+            <h5 class="text-white mt-3">K-Pop</h5>
+            <p class="small text-secondary">Artists & music</p>
+            <span class="btn btn-sm btn-outline-light">Explore</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 reveal">
+        <a href="comics.html" class="text-decoration-none">
+          <div class="category-card rounded-4 p-4 text-center h-100">
+            <i class="bi bi-book fs-1 text-purple"></i>
+            <h5 class="text-white mt-3">Comics</h5>
+            <p class="small text-secondary">Heroes & stories</p>
+            <span class="btn btn-sm btn-outline-light">Explore</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 reveal">
+        <a href="manga.html" class="text-decoration-none">
+          <div class="category-card rounded-4 p-4 text-center h-100">
+            <i class="bi bi-journal-richtext fs-1 text-purple"></i>
+            <h5 class="text-white mt-3">Manga</h5>
+            <p class="small text-secondary">Chapters & worlds</p>
+            <span class="btn btn-sm btn-outline-light">Explore</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3 reveal">
+        <a href="events.html" class="text-decoration-none">
+          <div class="category-card rounded-4 p-4 text-center h-100">
+            <i class="bi bi-calendar-event fs-1 text-purple"></i>
+            <h5 class="text-white mt-3">Events</h5>
+            <p class="small text-secondary">Fandom events</p>
+            <span class="btn btn-sm btn-outline-light">Discover</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="featured" class="py-5 bg-black">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <p class="text-purple fw-bold">TRENDING NOW</p>
+      <h2 class="display-5 fw-bold">
+        Featured <span class="text-purple">Universe</span>
+      </h2>
+    </div>
+
+    <div id="featuredCarousel" class="carousel slide carousel-fade reveal" data-bs-ride="carousel">
+      <div class="carousel-inner rounded-4">
+        <div class="carousel-item active">
+          <div class="row g-0 bg-dark">
+            <div class="col-md-6">
+              <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=900&q=90" class="img-fluid w-100 h-100 object-fit-cover" style="min-height:350px">
+            </div>
+            <div class="col-md-6 p-5 d-flex align-items-center">
+              <div>
+                <span class="badge bg-purple">ANIME</span>
+                <h2 class="fw-bold mt-3">Legendary Anime Worlds</h2>
+                <p class="text-secondary">Discover characters, stories, releases and everything happening inside the anime universe.</p>
+                <a href="anime.html" class="btn bg-purple text-white">
+                  Explore Anime <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="row g-0 bg-dark">
+            <div class="col-md-6">
+              <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=90" class="img-fluid w-100 h-100 object-fit-cover" style="min-height:350px">
+            </div>
+            <div class="col-md-6 p-5 d-flex align-items-center">
+              <div>
+                <span class="badge bg-purple">GAMING</span>
+                <h2 class="fw-bold mt-3">Enter The Gaming Universe</h2>
+                <p class="text-secondary">Discover games, characters, releases, events and gaming news.</p>
+                <a href="gaming.html" class="btn bg-purple text-white">
+                  Explore Gaming <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <div class="row g-0 bg-dark">
+            <div class="col-md-6">
+              <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=90" class="img-fluid w-100 h-100 object-fit-cover" style="min-height:350px">
+            </div>
+            <div class="col-md-6 p-5 d-flex align-items-center">
+              <div>
+                <span class="badge bg-purple">MOVIES</span>
+                <h2 class="fw-bold mt-3">Lights. Camera. Fandom.</h2>
+                <p class="text-secondary">Explore trailers, upcoming releases, characters and movie discussions.</p>
+                <a href="movies.html" class="btn bg-purple text-white">
+                  Explore Movies <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" data-bs-target="#featuredCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <p class="text-purple fw-bold">FANDOMVERSE FEATURES</p>
+      <h2 class="display-5 fw-bold">More To <span class="text-purple">Explore</span></h2>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-3 reveal">
+        <a href="trailers.html" class="text-decoration-none">
+          <div class="extra-card rounded-4 p-4 text-center h-100">
+            <i class="bi bi-play-circle-fill fs-1 text-purple"></i>
+            <h5 class="text-white mt-3">Trailers</h5>
+            <p class="text-secondary small">Watch latest trailers</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-3 reveal">
+        <a href="events.html" class="text-decoration-none">
+          <div class="extra-card rounded-4 p-4 text-center h-100">
+            <i class="bi bi-calendar-event fs-1 text-purple"></i>
+            <h5 class="text-white mt-3">Events</h5>
+            <p class="text-secondary small">Discover fandom events</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-3 reveal">
+        <a href="merchandise.html" class="text-decoration-none">
+          <div class="extra-card rounded-4 p-4 text-center h-100">
+            <i class="bi bi-bag-heart-fill fs-1 text-purple"></i>
+            <h5 class="text-white mt-3">Merchandise</h5>
+            <p class="text-secondary small">Explore fan products</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-3 reveal">
+        <a href="bookmarks.html" class="text-decoration-none">
+          <div class="extra-card rounded-4 p-4 text-center h-100">
+            <i class="bi bi-bookmark-heart-fill fs-1 text-purple"></i>
+            <h5 class="text-white mt-3">Bookmarks</h5>
+            <p class="text-secondary small">Save your favorites</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="cta rounded-4 p-5 text-center reveal">
+      <i class="bi bi-stars display-4 text-purple"></i>
+      <h2 class="fw-bold mt-3">
+        Your Fandom. <span class="text-purple">Your Universe.</span>
+      </h2>
+      <p class="text-secondary">Discover, explore, save and connect with the worlds you love.</p>
+      <a href="#categories" class="btn bg-purple text-white px-4">Start Exploring</a>
+    </div>
+  </div>
+</section>
+
+<button id="backTop" class="back-top btn btn-dark border-secondary rounded-circle">
+  <i class="bi bi-arrow-up"></i>
+</button>
+
+<footer class="bg-black border-top border-secondary py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-5">
+        <h4 class="text-purple fw-bold">
+          <i class="bi bi-stars"></i> FandomVerse
+        </h4>
+        <p class="text-secondary">The ultimate portal for anime, gaming, movies, TV shows, K-Pop, comics and manga fans.</p>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h6>Explore</h6>
+        <a href="anime.html" class="d-block text-secondary text-decoration-none mb-2">Anime</a>
+        <a href="gaming.html" class="d-block text-secondary text-decoration-none mb-2">Gaming</a>
+        <a href="movies.html" class="d-block text-secondary text-decoration-none mb-2">Movies</a>
+        <a href="manga.html" class="d-block text-secondary text-decoration-none">Manga</a>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h6>Community</h6>
+        <a href="events.html" class="d-block text-secondary text-decoration-none mb-2">Events</a>
+        <a href="bookmarks.html" class="d-block text-secondary text-decoration-none mb-2">Bookmarks</a>
+        <a href="merchandise.html" class="d-block text-secondary text-decoration-none">Merchandise</a>
+      </div>
+
+      <div class="col-md-3">
+        <h6>Follow The Universe</h6>
+        <div class="d-flex gap-3 fs-4">
+          <a href="#" class="text-secondary"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-discord"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-secondary my-4">
+
+    <div class="text-center">
+      <small class="text-secondary">© 2026 FandomVerse. All rights reserved.</small>
+    </div>
+  </div>
+</footer>
+
+<script>
+const fandoms = ["Anime", "Gaming", "Movies", "Manga", "Comics", "K-Pop"];
+let fandomIndex = 0;
+
+setInterval(() => {
+  fandomIndex = (fandomIndex + 1) % fandoms.length;
+  let text = document.getElementById("fandomText");
+  if(text) {
+    text.style.opacity = 0;
+    setTimeout(() => {
+      text.innerText = fandoms[fandomIndex];
+      text.style.opacity = 1;
+    }, 300);
+  }
+}, 2200);
+
+function updateClock() {
+  const clockEl = document.getElementById("clock");
+  if(clockEl) clockEl.innerText = new Date().toLocaleTimeString();
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+const counters = document.querySelectorAll(".stat-number");
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      let counter = entry.target;
+      let target = +counter.dataset.target;
+      let current = 0;
+      let increment = target / 80;
+      let update = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(update);
+        }
+        counter.innerText = Math.floor(current).toLocaleString();
+      }, 20);
+      counterObserver.unobserve(counter);
+    }
+  });
+}, { threshold: 0.5 });
+
+counters.forEach(counter => {
+  if (counter.dataset.target) counterObserver.observe(counter);
+});
+
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".reveal").forEach(item => {
+  revealObserver.observe(item);
+});
+
+const searchInput = document.getElementById("search");
+const searchBtn = document.querySelector(".search-box button");
+const searchMessage = document.getElementById("searchMessage");
+
+const fandomPages = {
+  "anime": "anime.html",
+  "gaming": "gaming.html",
+  "movies": "movies.html",
+  "tv shows": "tvshows.html",
+  "k-pop": "kpop.html",
+  "comics": "comics.html",
+  "manga": "manga.html",
+  "trailers": "trailers.html",
+  "events": "events.html",
+  "merchandise": "merchandise.html",
+  "bookmarks": "bookmarks.html"
+};
+
+function performSearch() {
+  let query = searchInput.value.trim().toLowerCase();
+  if (!query) {
+    searchMessage.innerText = "Please enter something to search.";
+    return;
+  }
+
+  let match = Object.keys(fandomPages).find(key => key.includes(query));
+
+  if (match) {
+    searchMessage.innerHTML = `<i class="bi bi-check-circle"></i> Redirecting to ${match.toUpperCase()}...`;
+    setTimeout(() => {
+      window.location.href = fandomPages[match];
+    }, 800);
+  } else {
+    searchMessage.innerText = "No matching fandom page found.";
+  }
+}
+
+if (searchInput) {
+  searchInput.addEventListener("input", function () {
+    let value = this.value.trim().toLowerCase();
+    if (!value) {
+      searchMessage.innerText = "";
+      return;
+    }
+    let match = Object.keys(fandomPages).find(key => key.includes(value));
+    if (match) {
+      searchMessage.innerHTML = `<i class="bi bi-search"></i> Press Search or Enter to view <strong>${match.toUpperCase()}</strong>`;
+    } else {
+      searchMessage.innerText = "No fandom found.";
+    }
+  });
+
+  searchInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      performSearch();
+    }
+  });
+}
+
+if (searchBtn) {
+  searchBtn.addEventListener("click", performSearch);
+}
+
+window.addEventListener("scroll", () => {
+  let scrollTop = document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let progress = (scrollTop / height) * 100;
+
+  const progressBar = document.getElementById("progress");
+  if(progressBar) progressBar.style.width = progress + "%";
+
+  const backTopBtn = document.getElementById("backTop");
+  if(backTopBtn) backTopBtn.style.display = scrollTop > 500 ? "block" : "none";
+});
+
+const backTopBtn = document.getElementById("backTop");
+if (backTopBtn) {
+  backTopBtn.onclick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

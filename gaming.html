@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Gaming Realm | FandomVerse</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .navbar .container {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .navbar-nav .nav-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand {
+      white-space: nowrap;
+    }
+
+    .nav-link {
+      white-space: nowrap;
+    }
+
+    .login-btn {
+      white-space: nowrap;
+    }
+
+    .anime-hero {
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .category-card {
+      height: 100%;
+    }
+
+    #contentGrid .content-card {
+      display: flex;
+    }
+
+    #contentGrid .category-card {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #contentGrid .category-card .p-3 {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #contentGrid .category-card .d-flex {
+      margin-top: auto !important;
+    }
+
+    #characterContainer > div {
+      display: flex;
+    }
+
+    #characterContainer .category-card {
+      width: 100%;
+    }
+
+    .form-select {
+      width: auto;
+      min-width: 180px;
+    }
+
+    @media (max-width: 991.98px) {
+      .navbar-nav {
+        align-items: flex-start;
+        padding-top: 10px;
+      }
+
+      .navbar-nav .nav-item {
+        width: 100%;
+      }
+
+      .nav-link {
+        width: 100%;
+      }
+
+      .login-btn {
+        margin-top: 8px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .form-select {
+        width: 100%;
+      }
+
+      #filterPills {
+        width: 100%;
+      }
+
+      .genre-pill {
+        flex: 1;
+      }
+    }
+  </style>
+
+</head>
+
+<body class="bg-black text-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container d-flex align-items-center">
+
+    <a class="navbar-brand fs-3 d-flex align-items-center gap-2 me-4" href="index.html">
+      <img src="./img/WhatsApp Image 2026-09-24 at 5.58.24 PM.jpeg"
+           alt="FandomVerse Logo"
+           class="navbar-logo">
+      <!--    <span class="text-nowrap">
+        <i class="bi bi-stars"></i> FandomVerse
+      </span> -->
+    </a>
+
+    <button class="navbar-toggler ms-auto"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#nav"
+            aria-controls="nav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="index.html">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="anime.html">Anime</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link  active px-3 text-nowrap" href="gaming.html">Gaming</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="movies.html">Movies</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="tvshows.html">TV Shows</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="kpop.html">K-Pop</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="comics.html">Comics</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="manga.html">Manga</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap d-flex align-items-center gap-1"
+             href="bookmarks.html">
+            <i class="bi bi-bookmark-heart"></i>
+            <span>Saved</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="contact.html">Contact Us</a>
+        </li>
+
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a href="login.html"
+             class="btn login-btn px-3 d-flex align-items-center justify-content-center gap-1 text-nowrap">
+            <i class="bi bi-person"></i>
+            <span>Login</span>
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+</nav>
+
+
+<script src="javascript.js"></script>
+
+<section class="anime-hero text-center text-light mt-5 pt-5">
+
+  <div class="container py-4">
+
+    <span class="badge bg-purple px-3 py-2 mb-3">
+      <i class="bi bi-controller"></i> GAMING REALM
+    </span>
+
+    <h1 class="display-4 fw-bold glow-title">
+      Next-Gen <span class="text-purple">Gaming</span> Hub
+    </h1>
+
+    <p class="text-secondary max-w-600 mx-auto">
+      Explore AAA game trailers, legendary game protagonists,
+      in-depth walkthroughs, and high-res concept art.
+    </p>
+
+  </div>
+
+</section>
+
+<section class="py-3 bg-dark border-top border-bottom border-secondary">
+
+  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+
+    <div class="d-flex flex-wrap gap-2" id="filterPills">
+
+      <button class="genre-pill active" onclick="filterCategory('all', this)">
+        All Content
+      </button>
+
+      <button class="genre-pill" onclick="filterCategory('video', this)">
+        Game Trailers
+      </button>
+
+      <button class="genre-pill" onclick="filterCategory('article', this)">
+        Guides & Reviews
+      </button>
+
+      <button class="genre-pill" onclick="filterCategory('gallery', this)">
+        Screenshots & Art
+      </button>
+
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+
+      <small class="text-secondary">Sort By:</small>
+
+      <select class="form-select bg-black text-light border-secondary" id="sortSelect" onchange="sortCards()">
+
+        <option value="newest">Newest First</option>
+
+        <option value="alpha">Alphabetical</option>
+
+        <option value="popular">Popularity</option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="py-5 container">
+
+  <h3 class="fw-bold mb-4">
+    <i class="bi bi-person-badge text-purple"></i>
+    Iconic Game Protagonists
+  </h3>
+
+  <div class="row g-4" id="characterContainer">
+
+    <div class="col-6 col-md-4 col-lg-2">
+
+      <div class="category-card p-3 rounded-4 text-center">
+
+        <img src="./img/g_c1.png"
+             class="img-fluid rounded-circle mb-3 mx-auto"
+             style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">Kratos</h6>
+
+        <small class="text-purple d-block mb-2">God of War</small>
+
+        <button class="btn btn-sm btn-outline-light w-100"
+          onclick="showCharModal('Kratos (Ghost of Sparta)', 'God of War Ragnarök', 'The former Greek God of War who seeks peace alongside his son Atreus in the Norse realm.', 'Leviathan Axe, Spartan Rage, Blades of Chaos')">
+          Profile
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-2">
+
+      <div class="category-card p-3 rounded-4 text-center">
+
+        <img src="./img/gc_2.jpg"
+             class="img-fluid rounded-circle mb-3 mx-auto"
+             style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">Master Chief</h6>
+
+        <small class="text-purple d-block mb-2">Halo Series</small>
+
+        <button class="btn btn-sm btn-outline-light w-100"
+          onclick="showCharModal('John-117 (Master Chief)', 'Halo Infinite', 'A cybernetically enhanced Spartan-II super-soldier defending humanity from alien threats.', 'Mjolnir Armor, Tactical Mastermind, Assault Rifle Specialist')">
+          Profile
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-2">
+
+      <div class="category-card p-3 rounded-4 text-center">
+
+        <img src="./img/gc_3.jpg"
+             class="img-fluid rounded-circle mb-3 mx-auto"
+             style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">Link</h6>
+
+        <small class="text-purple d-block mb-2">Zelda Series</small>
+
+        <button class="btn btn-sm btn-outline-light w-100"
+          onclick="showCharModal('Link (Hero of Time)', 'Tears of the Kingdom', 'Chosen champion of Hyrule tasked with wielding the Master Sword to defeat Ganondorf.', 'Master Sword, Hylian Shield, Zonai Abilities')">
+          Profile
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-2">
+
+      <div class="category-card p-3 rounded-4 text-center">
+
+        <img src="./img/gc_4.jpg"
+             class="img-fluid rounded-circle mb-3 mx-auto"
+             style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">Arthur Morgan</h6>
+
+        <small class="text-purple d-block mb-2">Red Dead 2</small>
+
+        <button class="btn btn-sm btn-outline-light w-100"
+          onclick="showCharModal('Arthur Morgan', 'Red Dead Redemption 2', 'A high-ranking enforcer in the Van der Linde gang negotiating the end of the Wild West.', 'Dead Eye Targeting, Gunslinger, Survival Expert')">
+          Profile
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-2">
+
+      <div class="category-card p-3 rounded-4 text-center">
+
+        <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=300"
+             class="img-fluid rounded-circle mb-3 mx-auto"
+             style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">V (Cyberpunk)</h6>
+
+        <small class="text-purple d-block mb-2">Cyberpunk 2077</small>
+
+        <button class="btn btn-sm btn-outline-light w-100"
+          onclick="showCharModal('V (Mercenary)', 'Cyberpunk 2077: Phantom Liberty', 'A cyber-enhanced mercenary battling for survival in the neon streets of Night City.', 'Mantis Blades, Netrunning, Relic Cyberware')">
+          Profile
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="py-4 container">
+
+  <h3 class="fw-bold mb-4">
+    <i class="bi bi-play-btn text-purple"></i>
+    AAA Trailers, Reviews & Captures
+  </h3>
+
+  <div class="row g-4" id="contentGrid">
+
+    <div class="col-md-4 content-card"
+         data-type="video"
+         data-name="Grand Theft Auto VI Trailer 1"
+         data-pop="100">
+
+      <div class="category-card rounded-4 overflow-hidden p-0">
+
+        <div class="position-relative">
+
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600"
+               class="w-100"
+               style="height:200px;object-fit:cover;">
+
+          <span class="badge bg-danger position-absolute top-0 end-0 m-3">
+            <i class="bi bi-play-circle-fill"></i> Official Trailer
+          </span>
+
+        </div>
+
+        <div class="p-3">
+
+          <h5 class="fw-bold text-light">
+            Grand Theft Auto VI Trailer 1
+          </h5>
+
+          <p class="small text-secondary">
+            Rockstar Games presents the state of Leonida and the Vice City underground.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-3">
+
+            <button class="btn bg-purple text-white btn-sm"
+              onclick="playVideo('https://www.youtube.com/embed/QdBZY2fkU-0', 'Grand Theft Auto VI Trailer 1')">
+              <i class="bi bi-play-fill"></i> Watch Trailer
+            </button>
+
+            <button class="btn btn-outline-light btn-sm btn-bookmark"
+              onclick="toggleBookmark('GTA VI Trailer 1', this)">
+              <i class="bi bi-bookmark"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4 content-card"
+         data-type="video"
+         data-name="Elden Ring Shadow of the Erdtree Trailer"
+         data-pop="98">
+
+      <div class="category-card rounded-4 overflow-hidden p-0">
+
+        <div class="position-relative">
+
+          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600"
+               class="w-100"
+               style="height:200px;object-fit:cover;">
+
+          <span class="badge bg-danger position-absolute top-0 end-0 m-3">
+            <i class="bi bi-play-circle-fill"></i> Gameplay Reveal
+          </span>
+
+        </div>
+
+        <div class="p-3">
+
+          <h5 class="fw-bold text-light">
+            Elden Ring: Shadow of the Erdtree
+          </h5>
+
+          <p class="small text-secondary">
+            Explore the Land of Shadow in FromSoftware's massive expansion reveal.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-3">
+
+            <button class="btn bg-purple text-white btn-sm"
+              onclick="playVideo('https://www.youtube.com/embed/qLZenOn7WUo', 'Elden Ring Erdtree Trailer')">
+              <i class="bi bi-play-fill"></i> Watch Trailer
+            </button>
+
+            <button class="btn btn-outline-light btn-sm btn-bookmark"
+              onclick="toggleBookmark('Elden Ring Expansion Trailer', this)">
+              <i class="bi bi-bookmark"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4 content-card"
+         data-type="video"
+         data-name="Cyberpunk 2077 Phantom Liberty Trailer"
+         data-pop="95">
+
+      <div class="category-card rounded-4 overflow-hidden p-0">
+
+        <div class="position-relative">
+
+          <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600"
+               class="w-100"
+               style="height:200px;object-fit:cover;">
+
+          <span class="badge bg-danger position-absolute top-0 end-0 m-3">
+            <i class="bi bi-play-circle-fill"></i> Launch Trailer
+          </span>
+
+        </div>
+
+        <div class="p-3">
+
+          <h5 class="fw-bold text-light">
+            Cyberpunk 2077: Phantom Liberty
+          </h5>
+
+          <p class="small text-secondary">
+            A spy-thriller extension taking V into Dogtown alongside Solomon Reed.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-3">
+
+            <button class="btn bg-purple text-white btn-sm"
+              onclick="playVideo('https://www.youtube.com/embed/vX8s2M_39n4', 'Cyberpunk Phantom Liberty Trailer')">
+              <i class="bi bi-play-fill"></i> Watch Trailer
+            </button>
+
+            <button class="btn btn-outline-light btn-sm btn-bookmark"
+              onclick="toggleBookmark('Phantom Liberty Trailer', this)">
+              <i class="bi bi-bookmark"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4 content-card"
+         data-type="article"
+         data-name="Top 10 Open World RPGs"
+         data-pop="93">
+
+      <div class="category-card rounded-4 overflow-hidden p-0">
+
+        <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600"
+             class="w-100"
+             style="height:200px;object-fit:cover;">
+
+        <div class="p-3">
+
+          <span class="badge bg-purple mb-2">
+            Guide / Article
+          </span>
+
+          <h5 class="fw-bold text-light">
+            Top 10 Open-World RPGs Ever Made
+          </h5>
+
+          <p class="small text-secondary">
+            Ranking the greatest open worlds from Skyrim and Witcher 3 to Elden Ring and Zelda.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-3">
+
+            <button class="btn btn-outline-light btn-sm btn-bookmark"
+              onclick="toggleBookmark('Top Open World RPGs Article', this)">
+              <i class="bi bi-bookmark"></i> Save Article
+            </button>
+
+            <small class="text-secondary">
+              7 min read
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-4 content-card"
+         data-type="gallery"
+         data-name="Unreal Engine 5 Showcase Gallery"
+         data-pop="89">
+
+      <div class="category-card rounded-4 overflow-hidden p-0">
+
+        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600"
+             class="w-100"
+             style="height:200px;object-fit:cover;">
+
+        <div class="p-3">
+
+          <span class="badge bg-success mb-2">
+            Gallery
+          </span>
+
+          <h5 class="fw-bold text-light">
+            Unreal Engine 5 Graphics Showcase
+          </h5>
+
+          <p class="small text-secondary">
+            A photorealistic gallery demonstrating Lumen ray-tracing and Nanite geometry lighting.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-3">
+
+            <button class="btn btn-outline-light btn-sm btn-bookmark"
+              onclick="toggleBookmark('UE5 Graphics Showcase Gallery', this)">
+              <i class="bi bi-bookmark"></i> Save Gallery
+            </button>
+
+            <small class="text-secondary">
+              16 Screenshots
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+
+    <div class="modal-content bg-black border border-purple">
+
+      <div class="modal-header border-secondary">
+
+        <h5 class="modal-title text-purple fw-bold" id="videoModalTitle">
+          Watch Trailer
+        </h5>
+
+        <button type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="modal"
+                onclick="stopVideo()">
+        </button>
+
+      </div>
+
+      <div class="modal-body p-0">
+
+        <div class="ratio ratio-16x9">
+
+          <iframe id="videoIframe"
+                  src=""
+                  allowfullscreen
+                  allow="autoplay">
+          </iframe>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="modal fade" id="charModal" tabindex="-1">
+
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content bg-dark text-light border border-secondary">
+
+      <div class="modal-header border-secondary">
+
+        <h5 class="modal-title text-purple fw-bold" id="mCharName">
+          Protagonist Name
+        </h5>
+
+        <button type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="modal">
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <p>
+          <strong>Game Title:</strong>
+          <span id="mCharSeries" class="text-info"></span>
+        </p>
+
+        <p>
+          <strong>Lore & Background:</strong>
+          <span id="mCharBio"></span>
+        </p>
+
+        <p>
+          <strong>Signature Weapons & Gear:</strong>
+          <span id="mCharTraits" class="badge bg-purple"></span>
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<footer class="bg-black border-top border-secondary py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-5">
+        <h4 class="text-purple fw-bold">
+          <i class="bi bi-stars"></i> FandomVerse
+        </h4>
+        <p class="text-secondary">The ultimate portal for anime, gaming, movies, TV shows, K-Pop, comics and manga fans.</p>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h6>Explore</h6>
+        <a href="anime.html" class="d-block text-secondary text-decoration-none mb-2">Anime</a>
+        <a href="gaming.html" class="d-block text-secondary text-decoration-none mb-2">Gaming</a>
+        <a href="movies.html" class="d-block text-secondary text-decoration-none mb-2">Movies</a>
+        <a href="manga.html" class="d-block text-secondary text-decoration-none">Manga</a>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h6>Community</h6>
+        <a href="events.html" class="d-block text-secondary text-decoration-none mb-2">Events</a>
+        <a href="bookmarks.html" class="d-block text-secondary text-decoration-none mb-2">Bookmarks</a>
+        <a href="merchandise.html" class="d-block text-secondary text-decoration-none">Merchandise</a>
+      </div>
+
+      <div class="col-md-3">
+        <h6>Follow The Universe</h6>
+        <div class="d-flex gap-3 fs-4">
+          <a href="#" class="text-secondary"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-discord"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-secondary my-4">
+
+    <div class="text-center">
+      <small class="text-secondary">© 2026 FandomVerse. All rights reserved.</small>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  document.querySelectorAll('#contentGrid .content-card').forEach((card, idx) => {
+    card.setAttribute('data-index', idx);
+  });
+
+  updateBookmarkIcons();
+
+});
+
+function playVideo(url, title) {
+
+  document.getElementById('videoModalTitle').innerText = title;
+
+  document.getElementById('videoIframe').src = url + "?autoplay=1";
+
+  let myModal = new bootstrap.Modal(document.getElementById('videoModal'));
+
+  myModal.show();
+
+}
+
+function stopVideo() {
+
+  document.getElementById('videoIframe').src = "";
+
+}
+
+document.getElementById('videoModal').addEventListener('hidden.bs.modal', function () {
+
+  stopVideo();
+
+});
+
+function showCharModal(name, series, bio, traits) {
+
+  document.getElementById('mCharName').innerText = name;
+
+  document.getElementById('mCharSeries').innerText = series;
+
+  document.getElementById('mCharBio').innerText = bio;
+
+  document.getElementById('mCharTraits').innerText = traits;
+
+  new bootstrap.Modal(document.getElementById('charModal')).show();
+
+}
+
+function toggleBookmark(itemTitle, btn) {
+
+  let bookmarks = JSON.parse(localStorage.getItem('fandom_bookmarks') || '[]');
+
+  let index = bookmarks.indexOf(itemTitle);
+
+  let icon = btn.querySelector('i');
+
+  if (index === -1) {
+
+    bookmarks.push(itemTitle);
+
+    localStorage.setItem('fandom_bookmarks', JSON.stringify(bookmarks));
+
+    alert('"' + itemTitle + '" saved to your bookmarks!');
+
+    if (icon) icon.className = 'bi bi-bookmark-fill text-warning';
+
+  } else {
+
+    bookmarks.splice(index, 1);
+
+    localStorage.setItem('fandom_bookmarks', JSON.stringify(bookmarks));
+
+    alert('"' + itemTitle + '" removed from bookmarks!');
+
+    if (icon) icon.className = 'bi bi-bookmark';
+
+  }
+
+}
+
+function updateBookmarkIcons() {
+
+  let bookmarks = JSON.parse(localStorage.getItem('fandom_bookmarks') || '[]');
+
+  document.querySelectorAll('.content-card').forEach(card => {
+
+    let cardName = card.getAttribute('data-name');
+
+    let bmBtn = card.querySelector('.btn-bookmark');
+
+    if (bmBtn && cardName) {
+
+      let icon = bmBtn.querySelector('i');
+
+      let isBookmarked = bookmarks.some(b =>
+        cardName.includes(b) || b.includes(cardName)
+      );
+
+      if (isBookmarked && icon) {
+        icon.className = 'bi bi-bookmark-fill text-warning';
+      }
+
+    }
+
+  });
+
+}
+
+function filterCategory(type, element) {
+
+  let pills = document.querySelectorAll('.genre-pill');
+
+  pills.forEach(p => p.classList.remove('active'));
+
+  if (element) element.classList.add('active');
+
+  let cards = document.querySelectorAll('.content-card');
+
+  cards.forEach(card => {
+
+    if (type === 'all' || card.getAttribute('data-type') === type) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+
+  });
+
+}
+
+function sortCards() {
+
+  const grid = document.getElementById('contentGrid');
+
+  const cards = Array.from(
+    grid.querySelectorAll('.content-card')
+  );
+
+  const sortValue =
+    document.getElementById('sortSelect').value;
+
+  cards.sort((a, b) => {
+
+    if (sortValue === 'alpha') {
+
+      return a.getAttribute('data-name')
+        .localeCompare(b.getAttribute('data-name'));
+
+    } else if (sortValue === 'popular') {
+
+      return parseInt(b.getAttribute('data-pop')) -
+             parseInt(a.getAttribute('data-pop'));
+
+    } else {
+
+      return parseInt(a.getAttribute('data-index')) -
+             parseInt(b.getAttribute('data-index'));
+
+    }
+
+  });
+
+  cards.forEach(card => grid.appendChild(card));
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Comics Hub | FandomVerse</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-black text-light">
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container d-flex align-items-center">
+
+    <a class="navbar-brand fs-3 d-flex align-items-center gap-2 me-4" href="index.html">
+      <img src="./img/WhatsApp Image 2026-09-24 at 5.58.24 PM.jpeg"
+           alt="FandomVerse Logo"
+           class="navbar-logo">
+      <!--    <span class="text-nowrap">
+        <i class="bi bi-stars"></i> FandomVerse
+      </span> -->
+    </a>
+
+    <button class="navbar-toggler ms-auto"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#nav"
+            aria-controls="nav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="index.html">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="anime.html">Anime</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="gaming.html">Gaming</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="movies.html">Movies</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="tvshows.html">TV Shows</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="kpop.html">K-Pop</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active  px-3 text-nowrap" href="comics.html">Comics</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="manga.html">Manga</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap d-flex align-items-center gap-1"
+             href="bookmarks.html">
+            <i class="bi bi-bookmark-heart"></i>
+            <span>Saved</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap" href="contact.html">Contact Us</a>
+        </li>
+
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a href="login.html"
+             class="btn login-btn px-3 d-flex align-items-center justify-content-center gap-1 text-nowrap">
+            <i class="bi bi-person"></i>
+            <span>Login</span>
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+</nav>
+</nav>
+
+
+
+<section class="anime-hero text-center text-light mt-5 pt-5">
+  <div class="container py-4">
+
+    <span class="badge bg-purple px-3 py-2 mb-3">
+      <i class="bi bi-journal-bookmark-fill"></i> GRAPHIC NOVELS
+    </span>
+
+    <h1 class="display-4 fw-bold glow-title">
+      Comic <span class="text-purple">Universe</span>
+    </h1>
+
+    <p class="text-secondary max-w-600 mx-auto">
+      Explore Marvel, DC, and indie comic lore, legendary superheroes,
+      issue breakdowns, and animated trailers.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- FILTERS -->
+<section class="py-3 bg-dark border-top border-bottom border-secondary">
+  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+
+    <div class="d-flex flex-wrap align-items-center gap-2" id="filterPills">
+
+      <button class="genre-pill active" onclick="filterCategory('all', this)">
+        All Content
+      </button>
+
+      <button class="genre-pill" onclick="filterCategory('video', this)">
+        Trailers & Clips
+      </button>
+
+      <button class="genre-pill" onclick="filterCategory('article', this)">
+        News & Lore
+      </button>
+
+      <button class="genre-pill" onclick="filterCategory('gallery', this)">
+        Comic Art
+      </button>
+
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+
+      <small class="text-secondary text-nowrap">
+        Sort By:
+      </small>
+
+      <select
+        class="form-select bg-black text-light border-secondary"
+        id="sortSelect"
+        onchange="sortCards()">
+        <option value="newest">Newest First</option>
+        <option value="alpha">Alphabetical</option>
+        <option value="popular">Popularity</option>
+      </select>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FEATURED SUPERHEROES -->
+<section class="py-5 container">
+
+  <h3 class="fw-bold mb-4">
+    <i class="bi bi-person-badge text-purple"></i>
+    Featured Superheroes
+  </h3>
+
+  <div class="row g-4" id="characterContainer">
+
+    <div class="col-6 col-md-4 col-lg-2">
+      <div class="category-card p-3 rounded-4 text-center h-100 d-flex flex-column">
+
+        <img
+          src="https://images.unsplash.com/photo-1635863138275-d9b33299680b?w=300"
+          class="img-fluid rounded-circle mb-3 mx-auto"
+          style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">Spider-Man</h6>
+
+        <small class="text-purple d-block mb-2">
+          Marvel Comics
+        </small>
+
+        <button
+          class="btn btn-sm btn-outline-light w-100 mt-auto"
+          onclick="showCharModal('Peter Parker (Spider-Man)', 'Marvel Comics', 'Bitten by a radioactive spider, Peter uses his powers to protect New York City.', 'Spider-Sense, Wall-Crawling, Genius Inventions')">
+          Profile
+        </button>
+
+      </div>
+    </div>
+
+
+    <div class="col-6 col-md-4 col-lg-2">
+      <div class="category-card p-3 rounded-4 text-center h-100 d-flex flex-column">
+
+        <img
+          src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=300"
+          class="img-fluid rounded-circle mb-3 mx-auto"
+          style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">Batman</h6>
+
+        <small class="text-purple d-block mb-2">
+          DC Comics
+        </small>
+
+        <button
+          class="btn btn-sm btn-outline-light w-100 mt-auto"
+          onclick="showCharModal('Bruce Wayne (Batman)', 'DC Comics', 'The Dark Knight of Gotham City who swore an oath to fight criminal corruption.', 'World\'s Greatest Detective, Martial Arts, Bat-Gadgets')">
+          Profile
+        </button>
+
+      </div>
+    </div>
+
+
+    <div class="col-6 col-md-4 col-lg-2">
+      <div class="category-card p-3 rounded-4 text-center h-100 d-flex flex-column">
+
+        <img
+          src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=300"
+          class="img-fluid rounded-circle mb-3 mx-auto"
+          style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">Superman</h6>
+
+        <small class="text-purple d-block mb-2">
+          DC Comics
+        </small>
+
+        <button
+          class="btn btn-sm btn-outline-light w-100 mt-auto"
+          onclick="showCharModal('Clark Kent (Superman)', 'DC Comics', 'Krypton\'s last son protecting planet Earth with immense superhero powers.', 'Super Speed, Flight, Heat Vision, Invulnerability')">
+          Profile
+        </button>
+
+      </div>
+    </div>
+
+
+    <div class="col-6 col-md-4 col-lg-2">
+      <div class="category-card p-3 rounded-4 text-center h-100 d-flex flex-column">
+
+        <img
+          src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300"
+          class="img-fluid rounded-circle mb-3 mx-auto"
+          style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">Wolverine</h6>
+
+        <small class="text-purple d-block mb-2">
+          Marvel / X-Men
+        </small>
+
+        <button
+          class="btn btn-sm btn-outline-light w-100 mt-auto"
+          onclick="showCharModal('Logan (Wolverine)', 'Marvel / X-Men', 'A mutant with enhanced senses, rapid healing, and adamantium claws.', 'Healing Factor, Adamantium Claws, Combat Expert')">
+          Profile
+        </button>
+
+      </div>
+    </div>
+
+
+    <div class="col-6 col-md-4 col-lg-2">
+      <div class="category-card p-3 rounded-4 text-center h-100 d-flex flex-column">
+
+        <img
+          src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300"
+          class="img-fluid rounded-circle mb-3 mx-auto"
+          style="width:80px;height:80px;object-fit:cover;">
+
+        <h6 class="fw-bold text-light mb-1">Wonder Woman</h6>
+
+        <small class="text-purple d-block mb-2">
+          DC Comics
+        </small>
+
+        <button
+          class="btn btn-sm btn-outline-light w-100 mt-auto"
+          onclick="showCharModal('Diana Prince (Wonder Woman)', 'DC Comics', 'Amazonian warrior princess standing as a symbol of truth and peace.', 'Super Human Strength, Lasso of Truth, Combat Master')">
+          Profile
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="py-4 container">
+
+  <h3 class="fw-bold mb-4">
+    <i class="bi bi-play-btn text-purple"></i>
+    Trailers, Graphic Novels & News
+  </h3>
+
+  <div class="row g-4" id="contentGrid">
+
+    <div
+      class="col-md-4 content-card"
+      data-type="video"
+      data-name="Spider-Man Across the Spider-Verse Trailer"
+      data-pop="99">
+
+      <div class="category-card rounded-4 overflow-hidden h-100 p-0 d-flex flex-column">
+
+        <div class="position-relative">
+
+          <img
+            src="https://images.unsplash.com/photo-1635863138275-d9b33299680b?w=600"
+            class="w-100"
+            style="height:200px;object-fit:cover;">
+
+          <span class="badge bg-danger position-absolute top-0 end-0 m-3">
+            <i class="bi bi-play-circle-fill"></i> Trailer
+          </span>
+
+        </div>
+
+        <div class="p-3 d-flex flex-column flex-grow-1">
+
+          <h5 class="fw-bold text-light">
+            Across the Spider-Verse Trailer
+          </h5>
+
+          <p class="small text-secondary">
+            Miles Morales catapults across the Multiverse to encounter a team of Spider-People.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+
+            <button
+              class="btn bg-purple text-white btn-sm"
+              onclick="playVideo('https://www.youtube.com/embed/cqGjhVJWtEg', 'Across the Spider-Verse Trailer')">
+              <i class="bi bi-play-fill"></i> Watch Trailer
+            </button>
+
+            <button
+              class="btn btn-outline-light btn-sm btn-bookmark"
+              onclick="toggleBookmark('Spider-Verse Trailer', this)">
+              <i class="bi bi-bookmark"></i>
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    
+    <div
+      class="col-md-4 content-card"
+      data-type="video"
+      data-name="X-Men 97 Official Trailer"
+      data-pop="96">
+
+      <div class="category-card rounded-4 overflow-hidden h-100 p-0 d-flex flex-column">
+
+        <div class="position-relative">
+
+          <img
+            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600"
+            class="w-100"
+            style="height:200px;object-fit:cover;">
+
+          <span class="badge bg-danger position-absolute top-0 end-0 m-3">
+            <i class="bi bi-play-circle-fill"></i> Trailer
+          </span>
+
+        </div>
+
+        <div class="p-3 d-flex flex-column flex-grow-1">
+
+          <h5 class="fw-bold text-light">
+            X-Men '97 Official Trailer
+          </h5>
+
+          <p class="small text-secondary">
+            A band of mutants use their uncanny gifts to protect a world that hates and fears them.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+
+            <button
+              class="btn bg-purple text-white btn-sm"
+              onclick="playVideo('https://www.youtube.com/embed/pv3Ss8o9gGQ', 'X-Men 97 Trailer')">
+              <i class="bi bi-play-fill"></i> Watch Trailer
+            </button>
+
+            <button
+              class="btn btn-outline-light btn-sm btn-bookmark"
+              onclick="toggleBookmark('X-Men 97 Trailer', this)">
+              <i class="bi bi-bookmark"></i>
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    
+    <div
+      class="col-md-4 content-card"
+      data-type="video"
+      data-name="Batman The Killing Joke Animated Clip"
+      data-pop="93">
+
+      <div class="category-card rounded-4 overflow-hidden h-100 p-0 d-flex flex-column">
+
+        <div class="position-relative">
+
+          <img
+            src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600"
+            class="w-100"
+            style="height:200px;object-fit:cover;">
+
+          <span class="badge bg-danger position-absolute top-0 end-0 m-3">
+            <i class="bi bi-play-circle-fill"></i> Trailer
+          </span>
+
+        </div>
+
+        <div class="p-3 d-flex flex-column flex-grow-1">
+
+          <h5 class="fw-bold text-light">
+            Batman: The Killing Joke Clip
+          </h5>
+
+          <p class="small text-secondary">
+            A dark dive into the tragic origin story of Gotham's iconic villain, The Joker.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+
+            <button
+              class="btn bg-purple text-white btn-sm"
+              onclick="playVideo('https.//www.youtube.com/embed/ZTT1qUwgWfU', 'Batman The Killing Joke Trailer')">
+              <i class="bi bi-play-fill"></i> Watch Clip
+            </button>
+
+            <button
+              class="btn btn-outline-light btn-sm btn-bookmark"
+              onclick="toggleBookmark('The Killing Joke Clip', this)">
+              <i class="bi bi-bookmark"></i>
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+   
+    <div
+      class="col-md-4 content-card"
+      data-type="article"
+      data-name="Top 10 Essential Graphic Novels"
+      data-pop="92">
+
+      <div class="category-card rounded-4 overflow-hidden h-100 p-0 d-flex flex-column">
+
+        <img
+          src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600"
+          class="w-100"
+          style="height:200px;object-fit:cover;">
+
+        <div class="p-3 d-flex flex-column flex-grow-1">
+
+          <span class="badge bg-purple mb-2">
+            Article
+          </span>
+
+          <h5 class="fw-bold text-light">
+            10 Essential Graphic Novels to Read
+          </h5>
+
+          <p class="small text-secondary">
+            From Watchmen to Sandman, explore masterpieces that redefined comic storycraft.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+
+            <button
+              class="btn btn-outline-light btn-sm btn-bookmark"
+              onclick="toggleBookmark('10 Graphic Novels Article', this)">
+              <i class="bi bi-bookmark"></i> Save Article
+            </button>
+
+            <small class="text-secondary">
+              6 min read
+            </small>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <div
+      class="col-md-4 content-card"
+      data-type="gallery"
+      data-name="Classic Vintage Comic Covers"
+      data-pop="87">
+
+      <div class="category-card rounded-4 overflow-hidden h-100 p-0 d-flex flex-column">
+
+        <img
+          src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600"
+          class="w-100"
+          style="height:200px;object-fit:cover;">
+
+        <div class="p-3 d-flex flex-column flex-grow-1">
+
+          <span class="badge bg-success mb-2">
+            Gallery
+          </span>
+
+          <h5 class="fw-bold text-light">
+            Classic Vintage Cover Art Gallery
+          </h5>
+
+          <p class="small text-secondary">
+            A high-res retrospective showcase of iconic Silver Age Marvel and DC comic covers.
+          </p>
+
+          <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+
+            <button
+              class="btn btn-outline-light btn-sm btn-bookmark"
+              onclick="toggleBookmark('Vintage Comic Cover Gallery', this)">
+              <i class="bi bi-bookmark"></i> Save Gallery
+            </button>
+
+            <small class="text-secondary">
+              18 Covers
+            </small>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+
+    <div class="modal-content bg-black border border-purple">
+
+      <div class="modal-header border-secondary">
+
+        <h5 class="modal-title text-purple fw-bold" id="videoModalTitle">
+          Watch Video
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          onclick="stopVideo()">
+        </button>
+
+      </div>
+
+      <div class="modal-body p-0">
+
+        <div class="ratio ratio-16x9">
+          <iframe
+            id="videoIframe"
+            src=""
+            allowfullscreen
+            allow="autoplay">
+          </iframe>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="modal fade" id="charModal" tabindex="-1">
+
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content bg-dark text-light border border-secondary">
+
+      <div class="modal-header border-secondary">
+
+        <h5 class="modal-title text-purple fw-bold" id="mCharName">
+          Hero Name
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal">
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <p>
+          <strong>Comic Universe:</strong>
+          <span id="mCharSeries" class="text-info"></span>
+        </p>
+
+        <p>
+          <strong>Biography:</strong>
+          <span id="mCharBio"></span>
+        </p>
+
+        <p>
+          <strong>Superpowers & Abilities:</strong>
+          <span id="mCharTraits" class="badge bg-purple"></span>
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<footer class="bg-black border-top border-secondary py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-5">
+        <h4 class="text-purple fw-bold">
+          <i class="bi bi-stars"></i> FandomVerse
+        </h4>
+        <p class="text-secondary">The ultimate portal for anime, gaming, movies, TV shows, K-Pop, comics and manga fans.</p>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h6>Explore</h6>
+        <a href="anime.html" class="d-block text-secondary text-decoration-none mb-2">Anime</a>
+        <a href="gaming.html" class="d-block text-secondary text-decoration-none mb-2">Gaming</a>
+        <a href="movies.html" class="d-block text-secondary text-decoration-none mb-2">Movies</a>
+        <a href="manga.html" class="d-block text-secondary text-decoration-none">Manga</a>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h6>Community</h6>
+        <a href="events.html" class="d-block text-secondary text-decoration-none mb-2">Events</a>
+        <a href="bookmarks.html" class="d-block text-secondary text-decoration-none mb-2">Bookmarks</a>
+        <a href="merchandise.html" class="d-block text-secondary text-decoration-none">Merchandise</a>
+      </div>
+
+      <div class="col-md-3">
+        <h6>Follow The Universe</h6>
+        <div class="d-flex gap-3 fs-4">
+          <a href="#" class="text-secondary"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-discord"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-secondary my-4">
+
+    <div class="text-center">
+      <small class="text-secondary">© 2026 FandomVerse. All rights reserved.</small>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#contentGrid .content-card').forEach((card, idx) => {
+    card.setAttribute('data-index', idx);
+  });
+
+  updateBookmarkIcons();
+});
+
+
+function playVideo(url, title) {
+  document.getElementById('videoModalTitle').innerText = title;
+  document.getElementById('videoIframe').src = url + "?autoplay=1";
+
+  let myModal = new bootstrap.Modal(
+    document.getElementById('videoModal')
+  );
+
+  myModal.show();
+}
+
+
+function stopVideo() {
+  document.getElementById('videoIframe').src = "";
+}
+
+
+document.getElementById('videoModal').addEventListener(
+  'hidden.bs.modal',
+  function () {
+    stopVideo();
+  }
+);
+
+
+function showCharModal(name, series, bio, traits) {
+  document.getElementById('mCharName').innerText = name;
+  document.getElementById('mCharSeries').innerText = series;
+  document.getElementById('mCharBio').innerText = bio;
+  document.getElementById('mCharTraits').innerText = traits;
+
+  new bootstrap.Modal(
+    document.getElementById('charModal')
+  ).show();
+}
+
+
+function toggleBookmark(itemTitle, btn) {
+  let bookmarks = JSON.parse(
+    localStorage.getItem('fandom_bookmarks') || '[]'
+  );
+
+  let index = bookmarks.indexOf(itemTitle);
+  let icon = btn.querySelector('i');
+
+  if (index === -1) {
+
+    bookmarks.push(itemTitle);
+
+    localStorage.setItem(
+      'fandom_bookmarks',
+      JSON.stringify(bookmarks)
+    );
+
+    alert('"' + itemTitle + '" saved to your bookmarks!');
+
+    if (icon) {
+      icon.className = 'bi bi-bookmark-fill text-warning';
+    }
+
+  } else {
+
+    bookmarks.splice(index, 1);
+
+    localStorage.setItem(
+      'fandom_bookmarks',
+      JSON.stringify(bookmarks)
+    );
+
+    alert('"' + itemTitle + '" removed from bookmarks!');
+
+    if (icon) {
+      icon.className = 'bi bi-bookmark';
+    }
+  }
+}
+
+
+function updateBookmarkIcons() {
+
+  let bookmarks = JSON.parse(
+    localStorage.getItem('fandom_bookmarks') || '[]'
+  );
+
+  document.querySelectorAll('.content-card').forEach(card => {
+
+    let cardName = card.getAttribute('data-name');
+    let bmBtn = card.querySelector('.btn-bookmark');
+
+    if (bmBtn && cardName) {
+
+      let icon = bmBtn.querySelector('i');
+
+      let isBookmarked = bookmarks.some(
+        b => cardName.includes(b) || b.includes(cardName)
+      );
+
+      if (isBookmarked && icon) {
+        icon.className = 'bi bi-bookmark-fill text-warning';
+      }
+    }
+  });
+}
+
+
+function filterCategory(type, element) {
+
+  let pills = document.querySelectorAll('.genre-pill');
+
+  pills.forEach(p => p.classList.remove('active'));
+
+  if (element) {
+    element.classList.add('active');
+  }
+
+  let cards = document.querySelectorAll('.content-card');
+
+  cards.forEach(card => {
+
+    if (
+      type === 'all' ||
+      card.getAttribute('data-type') === type
+    ) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+
+  });
+}
+
+
+function sortCards() {
+
+  const grid = document.getElementById('contentGrid');
+  const cards = Array.from(
+    grid.querySelectorAll('.content-card')
+  );
+
+  const sortValue =
+    document.getElementById('sortSelect').value;
+
+  cards.sort((a, b) => {
+
+    if (sortValue === 'alpha') {
+
+      return a
+        .getAttribute('data-name')
+        .localeCompare(b.getAttribute('data-name'));
+
+    } else if (sortValue === 'popular') {
+
+      return parseInt(b.getAttribute('data-pop')) -
+             parseInt(a.getAttribute('data-pop'));
+
+    } else {
+
+      return parseInt(a.getAttribute('data-index')) -
+             parseInt(b.getAttribute('data-index'));
+
+    }
+
+  });
+
+  cards.forEach(card => grid.appendChild(card));
+}
+</script>
+
+
+
+<script src="javascript.js"></script>
+
+</body>
+</html>

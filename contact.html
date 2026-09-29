@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us | FandomVerse</title>
+  
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    .contact-card {
+      background: rgba(16, 12, 24, 0.92);
+      border: 1px solid rgba(157, 82, 255, 0.35);
+      border-radius: 16px;
+      backdrop-filter: blur(16px);
+    }
+    .form-control, .form-select {
+      background: #110c18 !important;
+      border: 1px solid #2e203d !important;
+      color: #fff !important;
+      padding: 12px 16px;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #a970ff !important;
+      box-shadow: 0 0 15px rgba(169, 112, 255, 0.3) !important;
+    }
+    .form-control::placeholder {
+      color: #6c757d;
+    }
+    .info-icon-box {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: rgba(124, 58, 237, 0.2);
+      border: 1px solid rgba(169, 112, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #a970ff;
+      font-size: 1.4rem;
+    }
+  </style>
+</head>
+<body class="bg-dark text-light d-flex flex-column min-vh-100">
+
+<div id="progress"></div>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container d-flex align-items-center">
+
+    <a class="navbar-brand fs-3 d-flex align-items-center gap-2 me-4" href="index.html">
+      <img src="./img/WhatsApp Image 2026-09-24 at 5.58.24 PM.jpeg"
+           alt="FandomVerse Logo"
+           class="navbar-logo">
+    </a>
+
+    <button class="navbar-toggler ms-auto"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#nav"
+            aria-controls="nav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="anime.html">Anime</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="gaming.html">Gaming</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="movies.html">Movies</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="tvshows.html">TV Shows</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="kpop.html">K-Pop</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="comics.html">Comics</a></li>
+        <li class="nav-item"><a class="nav-link px-3 text-nowrap" href="manga.html">Manga</a></li>
+        <li class="nav-item">
+          <a class="nav-link px-3 text-nowrap d-flex align-items-center gap-1" href="bookmarks.html">
+            <i class="bi bi-bookmark-heart"></i>
+            <span>Saved</span>
+          </a>
+        </li>
+        <li class="nav-item"><a class="nav-link active px-3 text-nowrap" href="contact.html">Contact Us</a></li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <a href="login.html" class="btn login-btn px-3 d-flex align-items-center justify-content-center gap-1 text-nowrap">
+            <i class="bi bi-person"></i>
+            <span>Login</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<section class="anime-hero text-center text-light">
+  <div class="container py-4">
+    <span class="badge bg-purple px-3 py-2 mb-3 rounded-pill">
+      <i class="bi bi-headset me-1"></i> 24/7 SUPPORT
+    </span>
+    <h1 class="glow-title display-4 fw-bold">Get In <span class="text-purple">Touch</span></h1>
+    <p class="text-secondary max-w-600 mx-auto">
+      Koi query, feedback ya recommendation hai? Humari FandomVerse team se raabta karein.
+    </p>
+  </div>
+</section>
+
+<main class="container my-5 flex-grow-1">
+  <div class="row g-4 align-items-stretch">
+    
+    <div class="col-lg-7">
+      <div class="contact-card p-4 p-md-5 h-100">
+        <h3 class="fw-bold text-light mb-2"><i class="bi bi-envelope-paper text-purple me-2"></i>Send Us A Message</h3>
+        <p class="text-secondary small mb-4">Niche diye gaye form ko fill karein, hum jald se jald reply karenge.</p>
+        
+        <!-- Form configured to send email via Formspree API -->
+        <form id="contactForm" onsubmit="handleContactSubmit(event)">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label small text-secondary">Your Name</label>
+              <input type="text" name="name" class="form-control rounded-3" placeholder="John Doe" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small text-secondary">Email Address</label>
+              <input type="email" name="email" class="form-control rounded-3" placeholder="john@example.com" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small text-secondary">Category</label>
+              <select name="category" class="form-select rounded-3">
+                <option selected>General Query</option>
+                <option value="manga">Manga / Anime Request</option>
+                <option value="bug">Report a Bug</option>
+                <option value="business">Business / Partnership</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small text-secondary">Subject</label>
+              <input type="text" name="subject" class="form-control rounded-3" placeholder="How can we help?" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label small text-secondary">Message</label>
+              <textarea name="message" class="form-control rounded-3" rows="5" placeholder="Write your message here..." required></textarea>
+            </div>
+            <div class="col-12 mt-4">
+              <button type="submit" id="submitBtn" class="btn btn-glow w-100 py-3 rounded-3 d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-send-fill"></i> Send Message
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-lg-5">
+      <div class="d-flex flex-column gap-3 h-100">
+        <div class="contact-card p-4 d-flex align-items-center gap-3">
+          <div class="info-icon-box"><i class="bi bi-envelope-at-fill"></i></div>
+          <div>
+            <h6 class="fw-bold mb-1">Email Us</h6>
+            <p class="text-secondary small mb-0">support@fandomverse.com</p>
+          </div>
+        </div>
+
+        <div class="contact-card p-4 d-flex align-items-center gap-3">
+          <div class="info-icon-box"><i class="bi bi-discord"></i></div>
+          <div>
+            <h6 class="fw-bold mb-1">Community Discord</h6>
+            <p class="text-secondary small mb-0">discord.gg/fandomverse</p>
+          </div>
+        </div>
+
+        <div class="contact-card p-4 d-flex align-items-center gap-3">
+          <div class="info-icon-box"><i class="bi bi-geo-alt-fill"></i></div>
+          <div>
+            <h6 class="fw-bold mb-1">Headquarters</h6>
+            <p class="text-secondary small mb-0">Cyber District, Neo City</p>
+          </div>
+        </div>
+
+        <div class="contact-card p-4 flex-grow-1 d-flex flex-column justify-content-center text-center">
+          <h5 class="fw-bold mb-3">Follow Our Channels</h5>
+          <div class="d-flex justify-content-center gap-3">
+            <a href="#" class="info-icon-box text-decoration-none"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="info-icon-box text-decoration-none"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="info-icon-box text-decoration-none"><i class="bi bi-youtube"></i></a>
+            <a href="#" class="info-icon-box text-decoration-none"><i class="bi bi-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="bg-black border-top border-secondary py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-5">
+        <h4 class="text-purple fw-bold"><i class="bi bi-stars"></i> FandomVerse</h4>
+        <p class="text-secondary">The ultimate portal for anime, gaming, movies, TV shows, K-Pop, comics and manga fans.</p>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h6>Explore</h6>
+        <a href="anime.html" class="d-block text-secondary text-decoration-none mb-2">Anime</a>
+        <a href="gaming.html" class="d-block text-secondary text-decoration-none mb-2">Gaming</a>
+        <a href="movies.html" class="d-block text-secondary text-decoration-none mb-2">Movies</a>
+        <a href="manga.html" class="d-block text-secondary text-decoration-none">Manga</a>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <h6>Community</h6>
+        <a href="events.html" class="d-block text-secondary text-decoration-none mb-2">Events</a>
+        <a href="bookmarks.html" class="d-block text-secondary text-decoration-none mb-2">Bookmarks</a>
+        <a href="merchandise.html" class="d-block text-secondary text-decoration-none">Merchandise</a>
+      </div>
+
+      <div class="col-md-3">
+        <h6>Follow The Universe</h6>
+        <div class="d-flex gap-3 fs-4">
+          <a href="#" class="text-secondary"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-discord"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-secondary my-4">
+
+    <div class="text-center">
+      <small class="text-secondary">© 2026 FandomVerse. All rights reserved.</small>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('progress').style.width = scrolled + '%';
+});
+
+async function handleContactSubmit(event) {
+  event.preventDefault();
+  
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span> Sending...`;
+
+  const form = event.target;
+  const formData = new FormData(form);
+
+  try {
+    // Replace YOUR_FORMSPREE_ID with your actual Formspree endpoint ID (e.g. https://formspree.io/f/xknkyzqy)
+    const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      alert("Email sent successfully! Redirecting to Home Page...");
+      window.location.href = "index.html";
+    } else {
+      alert("Failed to send email. Please try again later.");
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = `<i class="bi bi-send-fill"></i> Send Message`;
+    }
+  } catch (error) {
+    alert("An error occurred. Redirecting to Home Page...");
+    window.location.href = "index.html";
+  }
+}
+</script>
+<script src="javascript.js"></script>
+</body>
+</html>
